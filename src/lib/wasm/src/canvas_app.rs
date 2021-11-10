@@ -104,6 +104,9 @@ impl AppOption {
             //panic!("_min field must smaller than _max field");
             return Err(JsValue::from(Error::new("*_min field must smaller than *_max field")));
         }
+        if self.color_min < -PI || PI < self.color_max {
+            return Err(JsValue::from(Error::new("must color_min >= -PI and PI >= color_max")));
+        }
         if self.color_saturation < 0.0 || 1.0 < self.color_saturation {
             //panic!("color_saturation must be in (0.0 1.0)");
             return Err(JsValue::from(Error::new("color_saturation must be in (0.0 1.0)")));
@@ -305,6 +308,18 @@ impl CanvasApp {
     }
 
     #[wasm_bindgen]
+    pub fn set_saturation_and_value(&mut self, saturation: f64, value: f64) -> Result<(), JsValue> {
+        self.app_opt.color_saturation = saturation;
+        self.app_opt.color_value = value;
+        self.app_opt.validate()?;
+        self.balls.iter_mut().for_each(|ball|{
+            ball.color.saturation = saturation;
+            ball.color.value = value;
+        });
+        Ok(())
+    }
+
+    #[wasm_bindgen]
     pub fn adjust_canvas_size(&mut self) -> Result<(), JsValue> {
         let app_canvas = self.context.canvas()
         .ok_or(JsValue::from(Error::new("cannot app canvas from app context")))?;
@@ -319,6 +334,24 @@ impl CanvasApp {
     pub fn set_background_color(&mut self, background_color: String) {
         self.app_opt.background_color = background_color;
     }
+
+    #[wasm_bindgen]
+    pub fn set_hue_range(&mut self, color_max: f64, color_min: f64) -> Result<(), JsValue> {
+        self.app_opt.color_max = color_max;
+        self.app_opt.color_min = color_min;
+        self.app_opt.validate()?;
+        Ok(())
+    }
+
+    #[wasm_bindgen]
+    pub fn set_is_filled(&mut self, is_filled: bool) {
+        self.app_opt.is_filled = is_filled;
+    }
+
+    #[wasm_bindgen]
+    pub fn set_is_color_vibration(&mut self, is_color_vibration: bool) {
+        self.app_opt.is_color_vibration = is_color_vibration;
+    } 
 }
 
 impl CanvasApp {
