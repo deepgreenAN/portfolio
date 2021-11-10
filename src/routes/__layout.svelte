@@ -1,0 +1,68 @@
+<script lang="ts">
+    import "../app.css";
+    import {onMount, onDestroy} from "svelte";
+    import init, {CanvasApp} from '$lib/wasm/pkg/wasm';
+    import type {IAppOption} from '$lib/wasm/pkg/wasm';
+    import wasm_path from "$lib/wasm/pkg/wasm_bg.wasm?url";
+
+    let canvas_app: CanvasApp;
+    let interval_id: number;
+
+    const PI = 3.1415
+
+    let app_opt : IAppOption = {
+        canvas_id: "app-canvas",
+        background_color: "#000000",
+        n_balls: 30,
+        v_abs_max: 1.5,
+        r_max: 50.0,
+        r_min: 10.0,
+        v_r_abs_max: 0.005,
+        color_max: PI,
+        color_min: -PI,
+        v_color_abs_max: PI/360.0,
+        is_color_vibration: false,
+        color_saturation: 1.0,
+        color_value: 1.0,
+        e_max: 1.01,
+        e_min: 0.95,
+        is_filled: false,
+        stroke_line_width: 1
+    };
+
+    onMount(async ():Promise<void> => {
+        console.log("a");
+
+        // 背景を描画するcanvasの設定
+        const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // CanvasApp
+        await init(wasm_path);
+        canvas_app = new CanvasApp(app_opt);
+        await canvas_app.init();
+
+        interval_id = window.setInterval(()=>{
+            canvas_app.step();
+        },1000/60);
+    });
+
+    onDestroy(():void =>{
+        clearInterval(interval_id);
+    });
+
+    const window_click_hundler = (e: any) => {
+        const x:number = e.clientX;
+        const y:number = e.clientY;
+        canvas_app.accelerate(x, y);
+    }
+
+</script>
+
+<div class="bg-red-300" id="root-layout-div">
+  this is root layout
+</div>
+<slot />
+<canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
+<svelte:window on:click={window_click_hundler} on:auxclick={()=>{canvas_app.shake()}}/>

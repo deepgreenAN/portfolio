@@ -3,16 +3,22 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "build": "node fix-new-urls && svelte-kit build",
     "preview": "svelte-kit preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
+    "@sveltejs/adapter-static": "^1.0.0-next.21",
     "@sveltejs/kit": "next",
+    "autoprefixer": "^10.3.7",
+    "cssnano": "^5.0.8",
+    "postcss": "^8.3.9",
+    "postcss-load-config": "^3.1.0",
     "svelte": "^3.42.6",
     "svelte-check": "^2.2.6",
-    "svelte-preprocess": "^4.9.4",
+    "svelte-preprocess": "^4.9.8",
+    "tailwindcss": "^2.2.16",
     "tslib": "^2.3.1",
     "typescript": "^4.4.3"
   },

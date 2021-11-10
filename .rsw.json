@@ -1,0 +1,6 @@
+{
+  "crates_path": "./src/lib/",
+  "crates": [
+    "wasm"
+  ]
+}
