@@ -87,9 +87,11 @@
 
 </script>
 
-<Header/>
+<div class="flex flex-col">
+    <Header is_dark_mode={is_dark_mode}/>
+    <slot />
+</div>
 <FixedSideMenu bind:is_dark_mode/>
-<slot />
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
 <svelte:window 
     on:click={window_click_hundler} 
