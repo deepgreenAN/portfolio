@@ -11,7 +11,8 @@
     let canvas_app: CanvasApp|null = null;
     let interval_id: number;
     let is_dark_mode = true;
-    const init_canvas_color = "#000000"
+    const init_canvas_color = "#000000";
+    const init_saturation = 1.0;
 
     const PI = 3.1415
 
@@ -27,7 +28,7 @@
         color_min: -PI,
         v_color_abs_max: PI/360.0,
         is_color_vibration: false,
-        color_saturation: 1.0,
+        color_saturation: init_saturation,
         color_value: 1.0,
         e_max: 1.01,
         e_min: 0.95,
@@ -83,6 +84,9 @@
         const canvas_color: string = is_dark_mode? "#000000":"#ffffff";
         canvas_app.set_background_color(canvas_color);
         canvas_app.set_is_filled(!is_dark_mode);
+
+        const saturation: number = is_dark_mode? 1.0:0.5;
+        canvas_app.set_saturation_and_value(saturation, 1.0);
     }
 
 </script>
