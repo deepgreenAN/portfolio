@@ -5,14 +5,19 @@
     import type {IAppOption} from '$lib/wasm/pkg/wasm';
     import wasm_path from "$lib/wasm/pkg/wasm_bg.wasm?url";
 
-    let canvas_app: CanvasApp;
+    import Header from "$lib/components/share/Header.svelte";
+    import FixedSideMenu from "$lib/components/share/FixedSideMenu.svelte";
+
+    let canvas_app: CanvasApp|null = null;
     let interval_id: number;
+    let is_dark_mode = true;
+    const init_canvas_color = "#000000"
 
     const PI = 3.1415
 
     let app_opt : IAppOption = {
         canvas_id: "app-canvas",
-        background_color: "#000000",
+        background_color: init_canvas_color,
         n_balls: 30,
         v_abs_max: 1.5,
         r_max: 50.0,
@@ -37,6 +42,9 @@
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        const context = canvas.getContext("2d");
+        context.fillStyle = init_canvas_color;
+        context.fillRect(0, 0, canvas.width, canvas.height);
 
         // CanvasApp
         await init(wasm_path);
@@ -58,11 +66,33 @@
         canvas_app.accelerate(x, y);
     }
 
+    const window_resize_hundler = (e: any) => {
+        // 背景を描画するcanvasの設定
+        const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        try{
+            canvas_app.adjust_canvas_size();
+        } catch(e) {
+            console.log(e);
+        }
+        
+    }
+
+    $: if (canvas_app!=null) {
+        const canvas_color: string = is_dark_mode? "#000000":"#ffffff";
+        canvas_app.set_background_color(canvas_color);
+        canvas_app.set_is_filled(!is_dark_mode);
+    }
+
 </script>
 
-<div class="bg-red-300" id="root-layout-div">
-  this is root layout
-</div>
+<Header/>
+<FixedSideMenu bind:is_dark_mode/>
 <slot />
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
-<svelte:window on:click={window_click_hundler} on:auxclick={()=>{canvas_app.shake()}}/>
+<svelte:window 
+    on:click={window_click_hundler} 
+    on:auxclick={()=>{canvas_app.shake()}}
+    on:resize={window_resize_hundler}
+/>

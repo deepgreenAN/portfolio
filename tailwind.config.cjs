@@ -5,7 +5,7 @@ const config = {
   theme: {
     extend: {
       zIndex: {
-        '-10':'-10'
+        '-10':'-10',
       }
     }
   },
