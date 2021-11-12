@@ -50,7 +50,7 @@
         // CanvasApp
         await init(wasm_path);
         canvas_app = new CanvasApp(app_opt);
-        await canvas_app.init();
+        canvas_app.init();
 
         interval_id = window.setInterval(()=>{
             canvas_app.step();
