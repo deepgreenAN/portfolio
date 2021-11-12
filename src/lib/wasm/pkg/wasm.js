@@ -130,6 +130,13 @@ function isLikeNone(x) {
     return x === undefined || x === null;
 }
 /**
+* wasmキャンパスの外部インターフェース
+* # Field
+* - context: 描画するキャンパスのコンテキスト
+* - balls: 描画するボール
+* - app_opt: オプション
+* - canvas_width: 描画で利用するキャンパスの横幅
+* - canvas_height: 描画で利用するキャンパスの縦幅
 */
 export class CanvasApp {
 
@@ -152,6 +159,8 @@ export class CanvasApp {
         wasm.__wbg_canvasapp_free(ptr);
     }
     /**
+    * Argments
+    * - iapp_option: Javascript側で指定するオプション
     * @param {IAppOption} iapp_option
     */
     constructor(iapp_option) {
@@ -159,6 +168,7 @@ export class CanvasApp {
         return CanvasApp.__wrap(ret);
     }
     /**
+    * デフォルトのオプションでコンストラクトする
     * @returns {CanvasApp}
     */
     static default_option() {
@@ -166,21 +176,28 @@ export class CanvasApp {
         return CanvasApp.__wrap(ret);
     }
     /**
+    * ボールの初期化
     */
     init() {
         wasm.canvasapp_init(this.ptr);
     }
     /**
+    * 1フレーム遷移
     */
     step() {
         wasm.canvasapp_step(this.ptr);
     }
     /**
+    * ボールの速度をランダムな値に変更する
     */
     shake() {
         wasm.canvasapp_shake(this.ptr);
     }
     /**
+    * クリックに応じてボールを加速
+    * Argments
+    * - x: クリックしたx座標
+    * - y: クリックしたy座標
     * @param {number} x
     * @param {number} y
     */
@@ -188,6 +205,10 @@ export class CanvasApp {
         wasm.canvasapp_accelerate(this.ptr, x, y);
     }
     /**
+    * 彩度と明度を設定
+    * Argments
+    * - saturation: 彩度
+    * - value: 明度
     * @param {number} saturation
     * @param {number} value
     */
@@ -195,11 +216,15 @@ export class CanvasApp {
         wasm.canvasapp_set_saturation_and_value(this.ptr, saturation, value);
     }
     /**
+    * canvas_width, canvas_heightをキャンパスサイズに合わせる
     */
     adjust_canvas_size() {
         wasm.canvasapp_adjust_canvas_size(this.ptr);
     }
     /**
+    * 背景色をセットする
+    * Argments
+    * - background_color: 背景色を表すカラーコード
     * @param {string} background_color
     */
     set_background_color(background_color) {
@@ -208,6 +233,10 @@ export class CanvasApp {
         wasm.canvasapp_set_background_color(this.ptr, ptr0, len0);
     }
     /**
+    * 色相の範囲をセットする
+    * Argments
+    * - color_max: 色相の最大値
+    * - color_min: 色相の最小値
     * @param {number} color_max
     * @param {number} color_min
     */
@@ -215,12 +244,18 @@ export class CanvasApp {
         wasm.canvasapp_set_hue_range(this.ptr, color_max, color_min);
     }
     /**
+    * 塗りつぶすかどうかをセットする
+    * Argments
+    * - is_filled: 塗りつぶすかどうか
     * @param {boolean} is_filled
     */
     set_is_filled(is_filled) {
         wasm.canvasapp_set_is_filled(this.ptr, is_filled);
     }
     /**
+    * 色相を振動させるかどうかをセットする
+    * Argments
+    * - is_color_vibration: 色相が範囲を越えたときに速度を反転させるかどうか
     * @param {boolean} is_color_vibration
     */
     set_is_color_vibration(is_color_vibration) {

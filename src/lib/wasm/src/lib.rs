@@ -3,8 +3,6 @@ pub mod rand_ball;
 pub mod dom_utils;
 pub mod canvas_app;
 
-
-
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
 #[cfg(feature = "wee_alloc")]

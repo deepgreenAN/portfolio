@@ -10,21 +10,25 @@ pub fn get_norm(x: f64, y: f64) -> f64 {  // 二乗ノルムを取得
     (x * x + y * y).sqrt()
 }
 
+// シミュレーションするポール
 #[derive(Clone)]
 pub struct Ball {
-    pub x: f64,
-    pub y: f64,
-    pub v_x: f64,
-    pub v_y: f64,
-    pub r: f64,
-    pub v_r: f64,
-    pub color: Hsv<Srgb, f64>,
-    pub v_color: f64,
-    pub e: f64
+    pub x: f64,  // x座標
+    pub y: f64,  // y座標
+    pub v_x: f64,  // 移動速度のx成分
+    pub v_y: f64,  // 移動速度のy成分
+    pub r: f64,  // ポールの半径
+    pub v_r: f64,  // 半径の変化速度
+    pub color: Hsv<Srgb, f64>,  // 色相
+    pub v_color: f64,  // 色相の変化速度
+    pub e: f64  // 反発係数
 
 }
 
 impl Ball {
+    /// ポールとの衝突
+    /// Argments
+    /// - other: 衝突する他のボール
     pub fn conflict_ball(&mut self, other: &Ball) {  // 二つの衝突判定と速度の更新
         if (self.x - other.x).powi(2) + (self.y - other.y).powi(2) < (self.r + other.r).powi(2) {  // 半径の和が中心の距離より小さい
             // 重なった部分をシフト
@@ -50,6 +54,12 @@ impl Ball {
         } 
     }
 
+    /// 壁との衝突
+    /// Argments
+    /// - left_wall: 左の壁のx座標
+    /// - right_wall: 右の壁のx座標
+    /// - bottom_wall: 下の壁のy座標
+    /// - top_wall: 上の壁のy座標
     pub fn conflict_wall(
         &mut self, 
         left_wall: f64,  // 左壁のx 
@@ -74,11 +84,13 @@ impl Ball {
         }
     }
 
+    /// 移動速度から位置を遷移
     pub fn step(&mut self) {
         self.x += self.v_x;
         self.y += self.v_y;
     }
 
+    /// 半径の変化速度から半径を遷移
     pub fn step_r(&mut self, r_min: f64, r_max: f64) {
         if self.r + self.v_r < r_min {  // 小さすぎる場合
             self.v_r = self.v_r.abs();
@@ -88,6 +100,11 @@ impl Ball {
         self.r += self.v_r;
     }
 
+    /// 色相の変化速度から色相を遷移
+    /// Argments
+    /// - color_min: 色相の最小値
+    /// - color_max: 色相の最大値
+    /// - is_vibration: 色相が範囲に到達したときに色相の変化速度を反転させるかどうか
     pub fn step_color(&mut self, color_min: f64, color_max: f64, is_vibration: bool){
         if self.color.hue.to_radians() + self.v_color < color_min {  //　小さすぎる
             if is_vibration {

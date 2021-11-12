@@ -13,27 +13,27 @@ use crate::rand_ball::{Ball, get_norm, get_unit_vector};
 use crate::dom_utils::*;
 use crate::PI;
 
-
+/// typescript側で与えるオプションのインターフェース
 #[wasm_bindgen(typescript_custom_section)]
 const APP_OPTION: &'static str = r#"
 interface IAppOption {
-    canvas_id: string,
-    background_color: string,
-    n_balls: number,
-    v_abs_max: number,
-    r_max: number,
-    r_min: number,
-    v_r_abs_max: number,
-    color_max: number,
-    color_min: number,
-    v_color_abs_max: number,
-    is_color_vibration: boolean,
-    color_saturation: number,
-    color_value: number,
-    e_max: number,
-    e_min: number,
-    is_filled: boolean,
-    stroke_line_width: number
+    canvas_id: string,  // 描画するキャンパスのld 
+    background_color: string,  // キャンパスの背景色 
+    n_balls: number,  // 描画するポールの数
+    v_abs_max: number,  // 移動速度の速さの初期値の最大値
+    r_max: number,  // ボールの半径の初期値の最大値
+    r_min: number,  // ポールの半径の初期値の最小値
+    v_r_abs_max: number,  // ボールの半径の変化速度の速さの初期値の最大値
+    color_max: number,  // 色相の最大値(<=2*PI)
+    color_min: number,  // 色相の最小値(<=0)
+    v_color_abs_max: number,  // 色相変化速度の速さの初期値の最大値
+    is_color_vibration: boolean,  // 色相が範囲を越えたときに速度を反転させるどうか
+    color_saturation: number,  // 固定された彩度
+    color_value: number,  // 固定された明度
+    e_max: number,  // 反発係数の初期値の最大値
+    e_min: number,  // 反発係数の初期値の最小値
+    is_filled: boolean,  // 描画するポールを塗りつぶすかどうか
+    stroke_line_width: number  // ポールの枠線の幅
 }
 "#;
 
@@ -43,35 +43,39 @@ extern "C" {
     pub type IAppOption;
 }
 
-
+/// javascript側から取り込むオプションのrust側実装
 #[derive(Deserialize)]
-struct AppOption {  // 型をはっきりさせるため
-    pub canvas_id: String,  // stringはpubで利用するためにはgetterとsetterが必要
-    pub background_color: String,
-    pub n_balls: usize,
-    pub v_abs_max: f64,
-    pub r_max: f64,
-    pub r_min: f64,
-    pub v_r_abs_max: f64,
-    pub color_max: f64,
-    pub color_min: f64,
-    pub v_color_abs_max: f64,
-    pub is_color_vibration: bool,
-    pub color_saturation: f64,
-    pub color_value: f64,
-    pub e_max: f64,
-    pub e_min: f64,
-    pub is_filled: bool,
-    pub stroke_line_width: u32
+struct AppOption {
+    pub canvas_id: String,  // 描画するキャンパスのld 
+    pub background_color: String,  // キャンパスの背景色 
+    pub n_balls: usize,  // 描画するポールの数
+    pub v_abs_max: f64,  // 移動速度の速さの初期値の最大値
+    pub r_max: f64,  // ボールの半径の初期値の最大値
+    pub r_min: f64,  // ポールの半径の初期値の最小値
+    pub v_r_abs_max: f64,  // ボールの半径の変化速度の速さの初期値の最大値
+    pub color_max: f64,  // 色相の最大値(<=2*PI)
+    pub color_min: f64,  // 色相の最小値(<=0)
+    pub v_color_abs_max: f64,  // 色相変化速度の速さの初期値の最大値
+    pub is_color_vibration: bool,  // 色相が範囲を越えたときに速度を反転させるどうか
+    pub color_saturation: f64,  // 固定された彩度
+    pub color_value: f64,  // 固定された明度
+    pub e_max: f64,  // 反発係数の初期値の最大値
+    pub e_min: f64,  // 反発係数の初期値の最小値
+    pub is_filled: bool,  // 描画するポールを塗りつぶすかどうか
+    pub stroke_line_width: u32  // ポールの枠線の幅
 }
 
 impl AppOption {
+    /// # Argments
+    /// - iapp_option: Javascript側で指定するオプション
     fn new(iapp_option: IAppOption) -> Result<AppOption, JsValue> {
         Ok(
             iapp_option.obj.into_serde::<AppOption>()
-            .map_err(|_|{JsValue::from(Error::new("cannot into_serde from javascript app_option"))})?
+            .map_err(|_|{JsValue::from(Error::new("cannot into_serde from javascript to app_option"))})?
         )
     }
+
+    /// デフォルトのオプション
     fn default_option() -> Self {
         Self {
             canvas_id: "canvas_app".to_string(),
@@ -95,6 +99,7 @@ impl AppOption {
         }
     }
 
+    /// オプションの値をバリデーション
     fn validate(&self) -> Result<(), JsValue>{
         if self.v_abs_max < 0.0 || self.v_r_abs_max < 0.0 || self.v_color_abs_max < 0.0 {
             //panic!("abs max field must be bigger than 0.0");
@@ -119,7 +124,13 @@ impl AppOption {
     }
 }
 
-
+/// wasmキャンパスの外部インターフェース
+/// # Field
+/// - context: 描画するキャンパスのコンテキスト
+/// - balls: 描画するボール
+/// - app_opt: オプション
+/// - canvas_width: 描画で利用するキャンパスの横幅
+/// - canvas_height: 描画で利用するキャンパスの縦幅
 #[wasm_bindgen]
 pub struct CanvasApp {  // アプリケーション
     context: web_sys::CanvasRenderingContext2d,
@@ -131,6 +142,8 @@ pub struct CanvasApp {  // アプリケーション
 
 #[wasm_bindgen]
 impl CanvasApp {
+    /// Argments
+    /// - iapp_option: Javascript側で指定するオプション
     #[wasm_bindgen(constructor)]
     pub fn new(iapp_option: IAppOption) -> Result<CanvasApp, JsValue> {
         let app_opt = AppOption::new(iapp_option)?;
@@ -150,6 +163,8 @@ impl CanvasApp {
             canvas_height
         })
     }
+
+    /// デフォルトのオプションでコンストラクトする
     #[wasm_bindgen]
     pub fn default_option() -> Result<CanvasApp, JsValue> {
         let app_opt = AppOption::default_option();
@@ -176,6 +191,7 @@ impl CanvasApp {
         })
     }
 
+    /// ボールの初期化
     #[wasm_bindgen]
     pub fn init(&mut self) -> Result<(), JsValue>{
     
@@ -220,6 +236,7 @@ impl CanvasApp {
 
     }
 
+    /// 1フレーム遷移
     #[wasm_bindgen]
     pub fn step(&mut self) -> Result<(), JsValue> {
         self.step_balls();
@@ -230,7 +247,7 @@ impl CanvasApp {
             0.0,
             self.canvas_width as f64,
             self.canvas_height as f64
-        );
+        );  // キャンパスを初期化
 
         for ball in self.balls.iter() {
             let color_rgb: Srgb<f64> = ball.color
@@ -247,13 +264,14 @@ impl CanvasApp {
                 )
             );
 
-            if self.app_opt.is_filled {
+            if self.app_opt.is_filled {  // 塗りつぶす場合
                 self.context.set_fill_style(&color_string);
-            } else {
+            } else {  // 塗りつぶさない場合
                 self.context.set_stroke_style(&color_string);
                 self.context.set_line_width(self.app_opt.stroke_line_width as f64);
             }
             
+            // ボールの描画
             self.context.begin_path();
             self.context
                 .arc(
@@ -265,9 +283,9 @@ impl CanvasApp {
                 )
                 .map_err(|_|{JsValue::from(Error::new("cannot draw arc to context"))})?;
 
-            if self.app_opt.is_filled {
+            if self.app_opt.is_filled {  // 塗りつぶす場合
                 self.context.fill();
-            } else {
+            } else {  // 塗りつぶさない場合
                 self.context.stroke();
             }
             
@@ -276,6 +294,7 @@ impl CanvasApp {
         Ok(())
     }
 
+    /// ボールの速度をランダムな値に変更する
     #[wasm_bindgen]
     pub fn shake(&mut self) {
         let mut random = thread_rng();
@@ -291,6 +310,10 @@ impl CanvasApp {
         }
     }
 
+    /// クリックに応じてボールを加速
+    /// Argments
+    /// - x: クリックしたx座標
+    /// - y: クリックしたy座標
     #[wasm_bindgen]
     pub fn accelerate(&mut self, x: f64, y: f64) {
         for ball in self.balls.iter_mut() {
@@ -307,6 +330,10 @@ impl CanvasApp {
         }
     }
 
+    /// 彩度と明度を設定
+    /// Argments
+    /// - saturation: 彩度
+    /// - value: 明度
     #[wasm_bindgen]
     pub fn set_saturation_and_value(&mut self, saturation: f64, value: f64) -> Result<(), JsValue> {
         self.app_opt.color_saturation = saturation;
@@ -319,6 +346,7 @@ impl CanvasApp {
         Ok(())
     }
 
+    /// canvas_width, canvas_heightをキャンパスサイズに合わせる
     #[wasm_bindgen]
     pub fn adjust_canvas_size(&mut self) -> Result<(), JsValue> {
         let app_canvas = self.context.canvas()
@@ -330,11 +358,18 @@ impl CanvasApp {
         Ok(())
     }
 
+    /// 背景色をセットする
+    /// Argments
+    /// - background_color: 背景色を表すカラーコード
     #[wasm_bindgen]
     pub fn set_background_color(&mut self, background_color: String) {
         self.app_opt.background_color = background_color;
     }
 
+    /// 色相の範囲をセットする
+    /// Argments
+    /// - color_max: 色相の最大値
+    /// - color_min: 色相の最小値
     #[wasm_bindgen]
     pub fn set_hue_range(&mut self, color_max: f64, color_min: f64) -> Result<(), JsValue> {
         self.app_opt.color_max = color_max;
@@ -343,11 +378,17 @@ impl CanvasApp {
         Ok(())
     }
 
+    /// 塗りつぶすかどうかをセットする
+    /// Argments
+    /// - is_filled: 塗りつぶすかどうか
     #[wasm_bindgen]
     pub fn set_is_filled(&mut self, is_filled: bool) {
         self.app_opt.is_filled = is_filled;
     }
 
+    /// 色相を振動させるかどうかをセットする
+    /// Argments
+    /// - is_color_vibration: 色相が範囲を越えたときに速度を反転させるかどうか
     #[wasm_bindgen]
     pub fn set_is_color_vibration(&mut self, is_color_vibration: bool) {
         self.app_opt.is_color_vibration = is_color_vibration;
@@ -355,6 +396,7 @@ impl CanvasApp {
 }
 
 impl CanvasApp {
+    /// ポールを遷移させる
     fn step_balls(&mut self) {
         for i in 0..self.app_opt.n_balls {
             for j in i+1..self.app_opt.n_balls {  // 重複をさける
