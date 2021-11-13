@@ -10,8 +10,8 @@
 
     let canvas_app: CanvasApp|null = null;
     let interval_id: number;
-    let is_dark_mode = true;
-    const init_canvas_color = "#000000";
+    let is_dark_mode = false;
+    const init_canvas_color = is_dark_mode? "#000000":"#ffffff";
     const init_saturation = 1.0;
 
     const PI = 3.1415
