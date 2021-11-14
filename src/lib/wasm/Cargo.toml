@@ -21,9 +21,11 @@ js-sys = "*"
 [profile.release]
 # Tell `rustc` to optimize for small code size.
 #opt-level = "s"
+#opt-level = "z"
 opt-level = 3
 overflow-checks = false
 lto = true
+#codegen-units = 1
 
 [dependencies.web-sys]
 version = "0.3.55"
