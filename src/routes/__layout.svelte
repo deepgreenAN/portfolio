@@ -5,14 +5,14 @@
     import type {IAppOption} from '$lib/wasm/pkg/wasm';
     import wasm_path from "$lib/wasm/pkg/wasm_bg.wasm?url";
 
+    import {is_dark_mode} from '$lib/darkmode_store';
     import Header from "$lib/components/share/Header.svelte";
     import FixedSideMenu from "$lib/components/share/FixedSideMenu.svelte";
 
     let canvas_app: CanvasApp|null = null;
     let interval_id: number;
-    let is_dark_mode = false;
-    const init_canvas_color = is_dark_mode? "#000000":"#ffffff";
-    const init_saturation = 1.0;
+    const init_canvas_color = $is_dark_mode? "#000000":"#ffffff";
+    const init_saturation = $is_dark_mode? 1.0:0.5;
 
     const PI = 3.1415
 
@@ -32,7 +32,7 @@
         color_value: 1.0,
         e_max: 1.01,
         e_min: 0.95,
-        is_filled: false,
+        is_filled: $is_dark_mode,
         stroke_line_width: 1
     };
 
@@ -81,21 +81,21 @@
     }
 
     $: if (canvas_app!=null) {
-        const canvas_color: string = is_dark_mode? "#000000":"#ffffff";
+        const canvas_color: string = $is_dark_mode? "#000000":"#ffffff";
         canvas_app.set_background_color(canvas_color);
-        canvas_app.set_is_filled(!is_dark_mode);
+        canvas_app.set_is_filled(!$is_dark_mode);
 
-        const saturation: number = is_dark_mode? 1.0:0.5;
+        const saturation: number = $is_dark_mode? 1.0:0.5;
         canvas_app.set_saturation_and_value(saturation, 1.0);
     }
 
 </script>
 
 <div class="flex flex-col">
-    <Header is_dark_mode={is_dark_mode}/>
+    <Header/>
     <slot />
 </div>
-<FixedSideMenu bind:is_dark_mode/>
+<FixedSideMenu/>
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
 <svelte:window 
     on:click={window_click_hundler} 

@@ -1,10 +1,11 @@
 <script lang="ts">
     import "./svg_icon.css";
-    export let is_dark_mode: boolean;
+    import {is_dark_mode} from '$lib/darkmode_store';
+    //export let is_dark_mode: boolean;
 </script>
 
-<svg on:click={()=>{is_dark_mode=!is_dark_mode}}
-    class:is_dark_mode={is_dark_mode} version="1.1" 
+<svg on:click={()=>{is_dark_mode.inverse()}}
+    class:is_dark_mode={$is_dark_mode} version="1.1" 
     xmlns="http://www.w3.org/2000/svg" 
     viewBox="0 0 512 512" 
     xmlns:xlink="http://www.w3.org/1999/xlink" 

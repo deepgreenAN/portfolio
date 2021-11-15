@@ -17,34 +17,62 @@
 </script>
 
 <script lang="ts">
+    import {is_dark_mode} from '$lib/darkmode_store';
     export let profile_data: Profile;
 </script>
 
 <div class="w-3/5 mx-auto">
-    <h2 class="pl-3 text-3xl">AboutMe</h2>
-    <div class="bg-gray-300 opacity-60 border-black border-2 border-solid rounded">
-        <div class="p-1"> {@html profile_data.about_me_desc} </div>
-        <hr>
-        <div class="flex flex-row">
-            <div class="w-1/2">
-                <div> フレームワーク・言語 </div>
-                <ul class="break-words">
-                    {#each profile_data.skills as skill}
-                    <li class="ml-4">{skill}</li>
-                    {/each}
-                </ul>
-            </div>
-            <div class="w-1/2">
-                <div> その他のスキル </div>
-                <ul class="break-words">
-                    {#each profile_data.other_skills as other_skill}
-                    <li class="ml-4">{other_skill}</li>
-                    {/each}
-                </ul>
-            </div>
+    <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>
+    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+        <div class="flex flex-col">
+            <div class="text-2xl pl-4"> 浅見直人 </div>
+            <div class="p-1"> {@html profile_data.about_me_desc} </div>
         </div>
     </div>
-
+    <h2 class:is_dark_mode={$is_dark_mode}>Skills</h2>
+    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+        <div class="flex flex-col">
+            <div class="flex flex-row">
+                <div class="w-1/2 border-r-2">
+                    <div class="border-b-2 pl-2"> フレームワーク・言語 </div>
+                    <ul class="break-words">
+                        {#each profile_data.skills as skill}
+                        <li class="ml-6">{skill}</li>
+                        {/each}
+                    </ul>
+                </div>
+                <div class="w-1/2">
+                    <div class="border-b-2 pl-2"> その他のスキル </div>
+                    <ul class="break-words">
+                        {#each profile_data.other_skills as other_skill}
+                        <li class="ml-6">{other_skill}</li>
+                        {/each}
+                    </ul>
+                </div>
+            </div>
+            <div class="p-1 border-t-2">{@html profile_data.skills_desk}</div>
+        </div>
+    </div>
 </div>
+
+<style>
+    div {
+        border-color: inherit;
+    }
+    h2 {
+        @apply pl-3 text-3xl text-gray-700;
+    }
+    .box {
+        @apply bg-gray-300 bg-opacity-60 border-gray-700 border-2 border-solid rounded text-gray-700 text-opacity-100;
+    }
+
+    .box_is_dark_mode {
+        @apply bg-gray-700 bg-opacity-60 border-gray-300 border-2 border-solid rounded text-gray-300 text-opacity-100;
+    }
+    .is_dark_mode {
+        @apply text-gray-300;
+    }
+    
+</style>
 
 
