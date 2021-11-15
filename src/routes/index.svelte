@@ -66,13 +66,24 @@
                     <div class="ml-2">
                         <span>{education.start}</span>
                         {#if education.end != null}
-                        <span>-{education.end}</span>
+                        <span>-</span>
+                        <span>{education.end}</span>
                         {/if}
                     </div>
                     <div class="ml-4">{education.belong}</div>
                 </div>
                 {/each}
             </div>
+        </div>
+    </div>
+    <div>
+        <h2 class:is_dark_mode={$is_dark_mode}>その他の資格・賞</h2>
+        <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+            <ul class="break-words">
+                {#each profile_data.other_credentials as credential}
+                    <li class="ml-6">{credential}</li>
+                {/each}
+            </ul>
         </div>
     </div>
     <div class="mb-5"></div>
@@ -86,11 +97,11 @@
         @apply pl-3 text-3xl text-primary;
     }
     .box {
-        @apply bg-bgcolor bg-opacity-60 border-border border-solid rounded text-primary text-opacity-100;
+        @apply bg-bgcolor bg-opacity-60 border-border border-solid rounded text-primary text-opacity-100 p-2;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
     }
     .box_is_dark_mode {
-        @apply bg-darkbgcolor bg-opacity-60 border-darkborder border-solid rounded text-darkprimary text-opacity-100;
+        @apply bg-darkbgcolor bg-opacity-60 border-darkborder border-solid rounded text-darkprimary text-opacity-100 p-2;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.25);
     }
     .is_dark_mode {

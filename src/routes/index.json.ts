@@ -20,7 +20,8 @@ export const get: RequestHandler = async () => {
         skills: without_desc_profile.skills as string[],
         other_skills: without_desc_profile.other_skills as string[],
         skills_desk: skills_desc,
-        educations: without_desc_profile.educations as {"start": string, "end": string | null, "belong": string}[]
+        educations: without_desc_profile.educations as {"start": string, "end": string | null, "belong": string}[],
+        other_credentials: without_desc_profile.other_credentials as string[]
     };
 
     return {
