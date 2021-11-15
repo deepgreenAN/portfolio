@@ -17,11 +17,11 @@
 
 <style>
     .header {
-        @apply w-4/5 h-20 mt-2 bg-gray-200 opacity-70 mx-auto rounded-sm;
+        @apply w-4/5 h-20 mt-2 bg-bgcolor opacity-70 mx-auto rounded-sm;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
     }
     .is_dark_mode {
-        @apply bg-gray-700;
+        @apply bg-darkbgcolor;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.25);
     }
 </style>

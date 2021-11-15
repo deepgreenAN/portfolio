@@ -1,7 +1,7 @@
 import { writable } from 'svelte/store';
 
 function createIsDarkMode() {
-    const {subscribe, update} = writable(false);
+    const {subscribe, update} = writable(true);
     return {
         subscribe,
         inverse: ():void => {update((_bool:boolean):boolean =>{return !_bool})}

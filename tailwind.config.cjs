@@ -18,13 +18,18 @@ const config = {
         '8/10':'80%',
         '9/10':'90%'
       },
-      // inset: {
-      //   '-1': '-0.25rem',
-      //   '-2': '-0.5rem',
-      //   '-3': '-0.75rem',
-      //   '-4': '-1.0rem'
-      // }
+      colors: {
+        primary: "#374151",
+        bgcolor: "#d1d5db",
+        border: "#374151",
+        darkprimary: "#d1d5db",
+        darkbgcolor: "#374151",
+        darkborder: "#d1d5db"
+      }
     }
+  },
+  variants: {
+    borderWidth: ['last'],
   },
   
   plugins: [],

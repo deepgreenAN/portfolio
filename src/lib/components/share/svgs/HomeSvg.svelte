@@ -1,5 +1,4 @@
 <script lang="ts">
-	import "./svg_icon.css";
 	import {is_dark_mode} from '$lib/darkmode_store';
 	//export let is_dark_mode: boolean;
 </script>
@@ -14,3 +13,12 @@
 	c11.028,0,20-8.996,20-20.053V148.275h19.791c8.436,0,11.066-3.854,11.884-6.151C330.615,139.822,331.009,135.161,324.442,129.811z"
 />
 </svg>
+
+<style>
+  svg {
+      @apply h-10 w-10 text-primary hover:text-bgcolor fill-current mx-auto;
+  }
+  .is_dark_mode {
+      @apply text-darkprimary hover:text-darkbgcolor;
+  }
+</style>

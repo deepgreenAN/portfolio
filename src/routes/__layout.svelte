@@ -8,6 +8,7 @@
     import {is_dark_mode} from '$lib/darkmode_store';
     import Header from "$lib/components/share/Header.svelte";
     import FixedSideMenu from "$lib/components/share/FixedSideMenu.svelte";
+    import Footer from "$lib/components/share/Footer.svelte";
 
     let canvas_app: CanvasApp|null = null;
     let interval_id: number;
@@ -94,6 +95,7 @@
 <div class="flex flex-col">
     <Header/>
     <slot />
+    <Footer/>
 </div>
 <FixedSideMenu/>
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>

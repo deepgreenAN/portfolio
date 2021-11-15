@@ -53,6 +53,22 @@
             <div class="p-1 border-t-2">{@html profile_data.skills_desk}</div>
         </div>
     </div>
+    <h2 class:is_dark_mode={$is_dark_mode}>Educations</h2>
+    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+        <div class="flex flex-col">
+            {#each profile_data.educations as education}
+            <div class="border-border border-b-2 last:border-b-0" class:is_dark_mode={$is_dark_mode}>
+                <div class="ml-2">
+                    <span>{education.start}</span>
+                    {#if education.end != null}
+                    <span>-{education.end}</span>
+                    {/if}
+                </div>
+                <div class="ml-4">{education.belong}</div>
+            </div>
+            {/each}
+        </div>
+    </div>
 </div>
 
 <style>
@@ -60,17 +76,18 @@
         border-color: inherit;
     }
     h2 {
-        @apply pl-3 text-3xl text-gray-700;
+        @apply pl-3 text-3xl text-primary;
     }
     .box {
-        @apply bg-gray-300 bg-opacity-60 border-gray-700 border-2 border-solid rounded text-gray-700 text-opacity-100;
+        @apply bg-bgcolor bg-opacity-60 border-border border-solid rounded text-primary text-opacity-100;
+        box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
     }
-
     .box_is_dark_mode {
-        @apply bg-gray-700 bg-opacity-60 border-gray-300 border-2 border-solid rounded text-gray-300 text-opacity-100;
+        @apply bg-darkbgcolor bg-opacity-60 border-darkborder border-solid rounded text-darkprimary text-opacity-100;
+        box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.25);
     }
     .is_dark_mode {
-        @apply text-gray-300;
+        @apply text-darkprimary border-darkborder;
     }
     
 </style>
