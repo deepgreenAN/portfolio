@@ -92,15 +92,45 @@
 
 </script>
 
-<div class="flex flex-col">
-    <Header/>
-    <slot />
-    <Footer/>
+<div class="main-container">
+    <div class="header">
+        <Header/>
+    </div>
+    <div class="contents">
+        <slot />
+    </div>
+    <div class="footer">
+        <Footer/>
+    </div>
 </div>
 <FixedSideMenu/>
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
 <svelte:window 
     on:click={window_click_hundler} 
-    on:auxclick={()=>{canvas_app.shake()}}
+    on:dblclick={()=>{canvas_app.shake()}}
     on:resize={window_resize_hundler}
 />
+
+<style>
+    :global(body) {
+        margin:0px;
+        padding:0px;
+        background-color: black;
+    }
+    .main-container {
+        padding: 0px;
+        margin: 0px;
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+    }
+    .header {
+        grid-row: 1/2;
+    }
+    .contents {
+        grid-row: 2/3;
+    }
+    .footer {
+        grid-row: 3/4;
+    }
+</style>

@@ -21,54 +21,61 @@
     export let profile_data: Profile;
 </script>
 
-<div class="w-3/5 mx-auto">
-    <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>
-    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-        <div class="flex flex-col">
-            <div class="text-2xl pl-4"> 浅見直人 </div>
-            <div class="p-1"> {@html profile_data.about_me_desc} </div>
-        </div>
-    </div>
-    <h2 class:is_dark_mode={$is_dark_mode}>Skills</h2>
-    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-        <div class="flex flex-col">
-            <div class="flex flex-row">
-                <div class="w-1/2 border-r-2">
-                    <div class="border-b-2 pl-2"> フレームワーク・言語 </div>
-                    <ul class="break-words">
-                        {#each profile_data.skills as skill}
-                        <li class="ml-6">{skill}</li>
-                        {/each}
-                    </ul>
-                </div>
-                <div class="w-1/2">
-                    <div class="border-b-2 pl-2"> その他のスキル </div>
-                    <ul class="break-words">
-                        {#each profile_data.other_skills as other_skill}
-                        <li class="ml-6">{other_skill}</li>
-                        {/each}
-                    </ul>
-                </div>
+<div class="w-3/5 mx-auto flex flex-col gap-10">
+    <div class="mt-5">
+        <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>
+        <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+            <div class="flex flex-col">
+                <div class="text-2xl pl-4"> 浅見直人 </div>
+                <div class="p-1"> {@html profile_data.about_me_desc} </div>
             </div>
-            <div class="p-1 border-t-2">{@html profile_data.skills_desk}</div>
         </div>
     </div>
-    <h2 class:is_dark_mode={$is_dark_mode}>Educations</h2>
-    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-        <div class="flex flex-col">
-            {#each profile_data.educations as education}
-            <div class="border-border border-b-2 last:border-b-0" class:is_dark_mode={$is_dark_mode}>
-                <div class="ml-2">
-                    <span>{education.start}</span>
-                    {#if education.end != null}
-                    <span>-{education.end}</span>
-                    {/if}
+    <div>
+        <h2 class:is_dark_mode={$is_dark_mode}>Skills</h2>
+        <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+            <div class="flex flex-col">
+                <div class="flex flex-row">
+                    <div class="w-1/2 border-r-2">
+                        <div class="border-b-2 pl-2"> フレームワーク・言語 </div>
+                        <ul class="break-words">
+                            {#each profile_data.skills as skill}
+                            <li class="ml-6">{skill}</li>
+                            {/each}
+                        </ul>
+                    </div>
+                    <div class="w-1/2">
+                        <div class="border-b-2 pl-2"> その他のスキル </div>
+                        <ul class="break-words">
+                            {#each profile_data.other_skills as other_skill}
+                            <li class="ml-6">{other_skill}</li>
+                            {/each}
+                        </ul>
+                    </div>
                 </div>
-                <div class="ml-4">{education.belong}</div>
+                <div class="p-1 border-t-2">{@html profile_data.skills_desk}</div>
             </div>
-            {/each}
         </div>
     </div>
+    <div>
+        <h2 class:is_dark_mode={$is_dark_mode}>Educations</h2>
+        <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+            <div class="flex flex-col">
+                {#each profile_data.educations as education}
+                <div class="border-border border-b-2 last:border-b-0" class:is_dark_mode={$is_dark_mode}>
+                    <div class="ml-2">
+                        <span>{education.start}</span>
+                        {#if education.end != null}
+                        <span>-{education.end}</span>
+                        {/if}
+                    </div>
+                    <div class="ml-4">{education.belong}</div>
+                </div>
+                {/each}
+            </div>
+        </div>
+    </div>
+    <div class="mb-5"></div>
 </div>
 
 <style>
