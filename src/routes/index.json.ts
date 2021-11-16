@@ -2,6 +2,14 @@ import type { RequestHandler } from '@sveltejs/kit';
 import fs from "fs"
 
 import type {Profile} from '$lib/profile';
+import type {Work} from '$lib/work';
+
+interface HomeResp {
+    about_me: Profile,
+    works: Work[]
+}
+
+export type {HomeResp};
 
 const PROFILE_DIR_PATH = "content/profile";
 
@@ -24,7 +32,13 @@ export const get: RequestHandler = async () => {
         other_credentials: without_desc_profile.other_credentials as string[]
     };
 
+    const works_path = "content/works.json";
+    const works = JSON.parse(fs.readFileSync(works_path, "utf8")) as Work[];
+
     return {
-        body: {...about_me}
+        body: {
+            about_me: {...about_me},
+            works:  works.map((work:Work)=>{return {...work}})
+        }
     }
 };

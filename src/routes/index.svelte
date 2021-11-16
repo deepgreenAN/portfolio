@@ -1,13 +1,18 @@
 <script context="module" lang="ts">
     import type {Load} from '@sveltejs/kit';
     import type {Profile} from '$lib/profile';
+    import type {Work} from '$lib/work';
+    import type {HomeResp} from './index.json';
     
     export const load: Load = async ({fetch}) => {
         const profile_data_res = await fetch("./index.json");
         if (profile_data_res.ok) {
-            const profile_data: Profile = await profile_data_res.json();
+            const profile_data: HomeResp = await profile_data_res.json();
             return {
-                props: {profile_data}
+                props: {
+                    profile_data: profile_data.about_me,
+                    works: profile_data.works
+                }
             }
         } else {
             const { message } = await profile_data_res.json();
@@ -17,8 +22,10 @@
 </script>
 
 <script lang="ts">
+    import profile_img_path from '@static/profile.png';
     import {is_dark_mode} from '$lib/darkmode_store';
     export let profile_data: Profile;
+    export let works: Work[];
 </script>
 
 <div class="w-3/5 mx-auto flex flex-col gap-10">
@@ -26,8 +33,14 @@
         <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
-                <div class="text-2xl pl-4"> 浅見直人 </div>
-                <div class="p-1"> {@html profile_data.about_me_desc} </div>
+                <div class="flex flex-row">
+                    <img src={profile_img_path} alt="profile" class="w-16">
+                    <div class="flex flex-col ml-4 mt-2">
+                        <div class="text-2xl"> 浅見直人 </div>
+                        <div class="text-sm">Asami Naoto</div>
+                    </div>
+                </div>
+                <div class="p-1 mt-2"> {@html profile_data.about_me_desc} </div>
             </div>
         </div>
     </div>
@@ -77,7 +90,7 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>その他の資格・賞</h2>
+        <h2 class:is_dark_mode={$is_dark_mode}>資格・賞</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <ul class="break-words">
                 {#each profile_data.other_credentials as credential}
