@@ -99,6 +99,23 @@
             </ul>
         </div>
     </div>
+    <div>
+        <h2 class:is_dark_mode={$is_dark_mode}>Works</h2>
+        <div class="box" class:box_is_dark_mode={$is_dark_mode}>
+            <div class="grid grid-cols-2 gap-5">
+                {#each works as work}
+                    <div class="border-2 rounded p-2 relative border-border" class:is_dark_mode={$is_dark_mode}>
+                        <div class="text-xl ml-4 mb-2">{work.title}</div>
+                        <div class="bg-bgcolor h-40" class:bg_is_dark_mode={$is_dark_mode}>
+                            <img src={work.image_path} alt="workimage" class="h-40 mx-auto" loading="eagar">
+                        </div>
+                        <div>{work.desc}</div>
+                    <div class="absolute left-0 top-0 w-full h-full bg-darkbgcolor opacity-0 hover:opacity-40" class:bg_hover_is_dark_mode={$is_dark_mode}></div>
+                    </div>
+                {/each}
+            </div>
+        </div>
+    </div>
     <div class="mb-5"></div>
 </div>
 
@@ -119,6 +136,13 @@
     }
     .is_dark_mode {
         @apply text-darkprimary border-darkborder;
+    }
+
+    .bg_is_dark_mode {
+        @apply bg-darkbgcolor;
+    }
+    .bg_hover_is_dark_mode {
+        @apply bg-bgcolor;
     }
     
 </style>

@@ -3,6 +3,7 @@
         "Python", 
         "Rust", 
         "WebAssembly(Rust)",
+        "Svelte",
         "Svelte Kit", 
         "Typescript", 
         "Vue"
