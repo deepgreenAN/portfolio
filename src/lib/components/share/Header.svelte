@@ -1,6 +1,8 @@
 <script lang="ts">
     import logo_white_path from "@static/logo/logo_white.png";
+    //import logo_white_path from "logo/logo_white.png";
     import logo_black_path from "@static/logo/logo_black.png";
+    //import logo_black_path from "logo/logo_black.png";
     import {is_dark_mode} from "$lib/darkmode_store";
 
     //export let is_dark_mode: boolean;
@@ -12,7 +14,7 @@
 </script>
 
 <div class="header" class:is_dark_mode={$is_dark_mode}>
-    <img src={logo_path} class="h-20 mb-2 ml-4" alt="logo">
+    <a href="/"><img src={logo_path} class="h-20 mb-2 ml-4" alt="logo"></a>
 </div>
 
 <style>

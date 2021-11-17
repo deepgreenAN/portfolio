@@ -11,7 +11,7 @@ interface HomeResp {
 
 export type {HomeResp};
 
-const PROFILE_DIR_PATH = "content/profile";
+const PROFILE_DIR_PATH = "contents/profile";
 
 export const get: RequestHandler = async () => {
     const about_me_desc_path = PROFILE_DIR_PATH + "/about_me_desc.txt";
@@ -32,7 +32,7 @@ export const get: RequestHandler = async () => {
         other_credentials: without_desc_profile.other_credentials as string[]
     };
 
-    const works_path = "content/works.json";
+    const works_path = "contents/works.json";
     const works = JSON.parse(fs.readFileSync(works_path, "utf8")) as Work[];
 
     return {

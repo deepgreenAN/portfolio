@@ -92,14 +92,14 @@
 
 </script>
 
-<div class="main-container">
-    <div class="header">
+<div id="main-container">
+    <div id="header">
         <Header/>
     </div>
-    <div class="contents">
-        <slot />
+    <div id="contents">
+        <slot></slot>
     </div>
-    <div class="footer">
+    <div id="footer">
         <Footer/>
     </div>
 </div>
@@ -117,20 +117,20 @@
         padding:0px;
         background-color: black;
     }
-    .main-container {
+    #main-container {
         padding: 0px;
         margin: 0px;
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
     }
-    .header {
+    #header {
         grid-row: 1/2;
     }
-    .contents {
+    #contents {
         grid-row: 2/3;
     }
-    .footer {
+    #footer {
         grid-row: 3/4;
     }
 </style>

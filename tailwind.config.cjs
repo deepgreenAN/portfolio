@@ -32,7 +32,8 @@ const config = {
     borderWidth: ['last'],
   },
   
-  plugins: [],
+  plugins: [
+  ],
 };
 
 module.exports = config;

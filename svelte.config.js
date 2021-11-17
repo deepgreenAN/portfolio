@@ -14,14 +14,14 @@ const config = {
 
   kit: {
     // hydrate the <div id="svelte"> element in src/app.html
-    target: "#svelte",
+    //target: "#svelte",
     adapter: adapter(),
     vite: {
       resolve: {
         alias: {
           // these are the aliases and paths to them
           '@static': path.resolve('./static'),
-          '@content': path.resolve('./content')
+          '@contents': path.resolve('./contents')
         }
       }
     }

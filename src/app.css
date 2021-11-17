@@ -2,3 +2,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.markdown {
+    @apply leading-relaxed text-sm;
+}
+@screen sm {
+  .markdown {
+    @apply text-base;
+  }
+}
+@screen lg {
+  .markdown {
+    @apply text-lg;
+  }
+}
+
+/* Headers */
+.markdown h1 {
+  @apply text-3xl my-6
+}
+.markdown h2 {
+  @apply text-xl my-6;
+}
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  @apply text-lg my-3 ;
+}
+@screen sm {
+  .markdown h1,
+  .markdown h2 {
+    @apply text-2xl;
+  }
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    @apply text-xl;
+  }
+}
+
+/* Links */
+.markdown a {
+  @apply text-blue-600;
+}
+.markdown a:hover {
+  @apply underline;
+}
+
+/* Paragraph */
+.markdown p {
+  @apply mb-4 leading-8 md:leading-10 text-justify;
+}
+
+/* Lists */
+.markdown ul,
+.markdown ol {
+  @apply mb-4 ml-8;
+}
+.markdown li > p,
+.markdown li > ul,
+.markdown li > ol {
+  @apply mb-0;
+}
+.markdown ol {
+  @apply list-decimal;
+}
+.markdown ul {
+  @apply list-disc;
+}
+
+/* Blockquotes */
+.markdown blockquote {
+  @apply p-2 mx-2 my-2 bg-gray-100 mb-4 border-l-4 border-gray-400  rounded-r-lg;
+}
+.markdown blockquote > p {
+  @apply mb-0;
+}
+
+/* Images */
+.markdown img {
+  @apply shadow-lg;
+}
+
+/* Code */
+.markdown :not(pre) > code {
+  @apply bg-indigo-50 p-1 font-semibold text-gray-600 rounded-lg ;
+}
+
+/* Pre */
+.markdown pre {
+  @apply mx-2;
+}
