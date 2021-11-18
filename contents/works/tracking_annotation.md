@@ -51,7 +51,6 @@ python setup.py build_ext --inplace
 - `backends/pysot/experiments/siamrpn_mobilev2_l234_dwxcorr`にこの[リンク](https://drive.google.com/file/d/1lPiRjFvajwrhOHVuXrygAj2cRb2BFFfz/view?usp=sharing)の重みファイルをダウンロード
 - `backends/pysot/experiments/siammask_r50_l3`にこの[リンク](https://drive.google.com/file/d/1dQoI2o5Bzfn_IhNJNgcX4OE79BIHwr8s/view?usp=sharing)の重みファイルをダウンロード
 
-部分的なインストールをしたい場合は[こちら](https://github.com/deepgreenAN/tracking_annotation/wiki/custom-setup)
 ## アプリケーションの起動
 ```
 python app.py
@@ -72,47 +71,46 @@ python app.py
 
 ### 出力ファイル
 - 出力画像ディレクトリ
-- 出力json(.json)(ほとんど[detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#standard-dataset-dicts)形式であり，そのまま学習できる)
+- 出力json(.json)(ほとんど[detectron2](https://detectron2.readthedocs.io/en/latest/tutorials/datasets.html#standard-dataset-dicts)形式であり，そのまま学習できます)
 
 ### keybord
-- h: このヘルプを別画面で開く
-- o: オプション画面を開く
+- h: このヘルプを別画面で開きます
+- o: オプション画面を開きます
 #### 画面の遷移
-- n: 選択領域を基にトラッキングによって次フレームを推定+フレームを一つ進む
-- p: フレームを一つ戻る
-- t: フレームを一つ進む
-- f: フレームの最初に戻る
+- n: 選択領域を基にトラッキングによって次フレームを推定+フレームを一つ進みます
+- p: フレームを一つ戻ります
+- t: フレームを一つ進ませます
+- f: フレームの最初に戻ります
 #### 選択オブジェクトの変更
-- a: 選択オブジェクトの追加と変更
-- c: 選択オブジェクトの変更
+- a: 選択オブジェクトを追加しそれに変更します
+- c: 選択オブジェクトを変更します
 
 ### ラベル付け
-- 画面右側のラベルと状態を変更する
-- 新しいオブジェクトボタンによってラベル付けを行うオブジェクトを追加する
+- 画面右側でラベルと状態が変更できます
+- 新しいオブジェクトボタンによってラベル付けを行うオブジェクトを追加できます
 
 ### オートモード
-推定領域を基にさらに推定を繰り返していく．
+推定領域を基にさらに推定を繰り返していきます
 
 ### 矩形選択・ポリゴン選択モード
 #### 矩形選択
-領域を矩形で選択できる．
-- 左クリックで左上点，右下点を選択
+領域を矩形で選択します
+- 左クリックで左上点，右下点を選択します
 #### ポリゴン選択
-領域をポリゴンで選択できる．
+領域をポリゴンで選択します
 - 左クリックで各点を順番に選択
-- 閉じたポリゴンに対して右クリックで最も近い点を移動できる -> 左クリックで移動位置を決定
-- 閉じたポリゴンに対して左ダブルクリックで最も近い辺に頂点を作成 -> 左クリックで位置を決定
+- 閉じたポリゴンに対して右クリックで最も近い点を選択 -> 左クリックで移動位置を決定します
+- 閉じたポリゴンに対して左ダブルクリックで最も近い辺に頂点を作成し選択-> 左クリックで位置を決定します
 
 ### 保存
-指定されたパスにjsonファイルを保存する．オプションで指定すれば，動画も保存できる．
+指定されたパスにjsonファイルを保存します．オプションで指定すれば，動画としても保存します．
 
 ### キャッシュを削除
-途中生成された画像ファイルのディレクトリ(/temp/images_*)を削除する．作業が途中であれば，残しておいた方が読み込みが早くなる．
+途中生成された画像ファイルのディレクトリ(/temp/images_*)を削除します．作業が途中であれば，残しておいた方が読み込みが早くなります．
 
 ## カスタムトラッカー
-以下はKCFトラッカーの名前を変えたものである．
-(trackers/opencv_tracker.py)
-```python
+以下はKCFトラッカーの名前を変えたものです．
+```python:trackers/opencv_tracker.py
 import cv2
 
 class CustomTracker:
@@ -165,8 +163,8 @@ class CustomTracker:
         out_dict = {"bbox_dict":xyxy_dict, "polygon":None}
         return out_dict
 ```
-上記のように引数・返り値のうち必要のないものはNoneで指定する．次に`/tracker_factory.py`を以下のように変更する(もちろん適切にimportする)．
-```python
+上記のように引数・返り値のうち必要のないものはNoneで指定します．次に`/tracker_factory.py`を以下のように変更します．
+```python:/tracker_factory.py
 tracker_symbols = [
   "SiamMask",
   "SiamMaskV2",
@@ -176,7 +174,7 @@ tracker_symbols = [
   "Custom"
 ]
 ```
-```python
+```python:/tracker_factory.py
 def factory(symbol_str, is_cpu=True):
   if symbol_str not in tracker_symbols:
     raise Exception("tracker must be in {}".format(tracker_symbols))
@@ -194,8 +192,8 @@ def factory(symbol_str, is_cpu=True):
   elif symbol_str=="Custom":
     return CustomTracker()
 ```
-この変更によって，option画面で変更ができるようになる．デフォルトを変更したい場合は`app_config.py`を以下のように変更する．
-```python
+この変更によって，option画面で変更ができるようになります．デフォルトを変更したい場合は`app_config.py`を以下のように変更する．
+```python:app_config.py
 class Config:
   def __init__(self):
     self.make_video = False

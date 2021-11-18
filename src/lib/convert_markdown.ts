@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm"
 import remarkMath from "remark-math"
 import remarkPrism from "remark-prism"
 import remarkRehype from "remark-rehype"
+import remarkCodeTitle from "remark-code-titles"
 import rehypeRaw from "rehype-raw"
 import rehypeKatex from "rehype-katex"
 import rehypeStringify from "rehype-stringify"
@@ -50,6 +51,7 @@ function mdToHtml (md: string):HtmlWithMeta {
         .use(remarkExtractFrontMatter, {yaml: yaml.parse})
         .use(remarkGfm)
         .use(remarkMath)
+        .use(remarkCodeTitle)
         .use(remarkPrism)
         .use(remarkRehype, { allowDangerousHtml: true })
         .use(rehypeRaw)
