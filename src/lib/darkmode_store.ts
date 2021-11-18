@@ -1,5 +1,9 @@
 import { writable } from 'svelte/store';
 
+/**
+ * ダークモードかどうかを示すストアを返す
+ * @returns booleanのストア
+ */
 function createIsDarkMode() {
     const {subscribe, update} = writable(true);
     return {

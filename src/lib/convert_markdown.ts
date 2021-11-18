@@ -11,22 +11,39 @@ import rehypeKatex from "rehype-katex"
 import rehypeStringify from "rehype-stringify"
 import yaml from "yaml"
 
+/**
+* メタ情報を含めたhtml
+*/
 interface HtmlWithMeta {
+    /** htmlの文字列 */
     content: string,
+    /** 記事のタイトル */
     title: string,
+    /** 数式を使うかどうか */
     use_katex: boolean,
+    /** コードを使うかどうか */
     use_code: boolean
 }
 
+/**
+ * フロントマタ情報
+ */
 interface FrontMatter {
+    /** 記事のタイトル */
     title: string,
+    /** 数式を使うかどうか */
     use_katex: boolean,
+    /** コードを使うかどうか */
     use_code: boolean
 }
 
 
+/**
+ * マークダウン文字列をメタ情報を含めたhtmlに変換
+ * @param md マークダウン文字列
+ * @returns メタ情報を含めたhtml
+ */
 function mdToHtml (md: string):HtmlWithMeta {
-    console.log("mdToHtml called");
     const processer = unified()
         .use(remarkParse)
         .use(remarkFrontMatter)
@@ -56,6 +73,11 @@ function mdToHtml (md: string):HtmlWithMeta {
     return html_with_meta
 };
 
+/**
+ * mdToHtmlのモック
+ * @param md マークダウン文字列
+ * @returns メタ情報を含めたhtml
+ */
 function mdToHtmlv2 (md: string):HtmlWithMeta {
     const html_with_meta: HtmlWithMeta = {
         content: md,

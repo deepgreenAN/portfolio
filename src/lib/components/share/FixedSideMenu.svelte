@@ -10,6 +10,6 @@
 <div class="flex flex-col w-10 h-60 fixed bottom-10 left-5 content-center justify-between">
     <a href="/"><HomeSvg/></a>
     <DarkSvg/>
-    <GithubSvg/>
-    <TwitterSvg/>
+    <a href="https://github.com/deepgreenAN"><GithubSvg/></a>
+    <a href="https://twitter.com/deepgreenAN"><TwitterSvg/></a>
 </div>
