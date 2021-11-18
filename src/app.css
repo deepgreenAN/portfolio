@@ -5,43 +5,38 @@
 
 
 .markdown {
-    @apply leading-relaxed text-sm;
-}
-@screen sm {
-  .markdown {
-    @apply text-base;
-  }
-}
-@screen lg {
-  .markdown {
-    @apply text-lg;
-  }
+    @apply leading-relaxed text-base;
 }
 
 /* Headers */
 .markdown h1 {
-  @apply text-3xl my-6
+  @apply text-3xl my-6;
+  counter-reset: counter;
 }
+
 .markdown h2 {
-  @apply text-xl my-6;
+  @apply text-2xl my-4;
+  counter-reset: sub-counter;
 }
-.markdown h3,
+
+.markdown h2:before {
+  counter-increment: counter;
+  content: counter(counter)". ";
+}
+
+.markdown h3 {
+  @apply text-xl my-2;
+}
+
+.markdown h3:before {
+  counter-increment: sub-counter;
+  content: counter(counter)"."counter(sub-counter)". ";
+}
+
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply text-lg my-3 ;
-}
-@screen sm {
-  .markdown h1,
-  .markdown h2 {
-    @apply text-2xl;
-  }
-  .markdown h3,
-  .markdown h4,
-  .markdown h5,
-  .markdown h6 {
-    @apply text-xl;
-  }
+  @apply text-lg my-2 ;
 }
 
 /* Links */
@@ -54,7 +49,7 @@
 
 /* Paragraph */
 .markdown p {
-  @apply mb-4 leading-8 md:leading-10 text-justify;
+  @apply mb-4 text-justify;
 }
 
 /* Lists */
@@ -89,7 +84,7 @@
 
 /* Code */
 .markdown :not(pre) > code {
-  @apply bg-indigo-50 p-1 font-semibold text-gray-600 rounded-lg ;
+  @apply bg-indigo-50 font-mono text-gray-600 rounded-sm;
 }
 
 /* Pre */
