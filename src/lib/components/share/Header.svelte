@@ -4,6 +4,7 @@
     import logo_black_path from "@static/logo/logo_black.png";
     //import logo_black_path from "logo/logo_black.png";
     import {is_dark_mode} from "$lib/darkmode_store";
+    import DarkToggleSwitch from "./DarkToggleSwitch.svelte";
 
     let logo_path: string;
     $: {
@@ -13,12 +14,16 @@
 </script>
 
 <div class="header" class:is_dark_mode={$is_dark_mode}>
-    <a href="/"><img src={logo_path} class="h-20 mb-2 ml-4" alt="logo"></a>
+    <a href="/"><img src={logo_path} class="h-20 ml-4" alt="logo"></a>
+    <div class="flex flex-row justify-end">
+        <DarkToggleSwitch/>
+        <div class="w-32"></div>
+    </div>
 </div>
 
 <style>
     .header {
-        @apply w-4/5 h-20 mt-2 bg-bgcolor opacity-70 mx-auto rounded-sm;
+        @apply w-4/5 h-20 mt-2 bg-bgcolor opacity-70 mx-auto rounded-sm flex flex-row items-center justify-between;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
     }
     .is_dark_mode {
