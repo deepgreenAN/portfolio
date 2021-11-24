@@ -3,7 +3,7 @@
 </script>
 
 <div class="w-full h-7 text-center bg-bgcolor bg-opacity-60 text-primary" class:is_dark_mode={$is_dark_mode}>
-    Copyright © 2021 Asami Naoto
+    Copyright &copy; 2021 Asami Naoto
 </div>
 
 <style>

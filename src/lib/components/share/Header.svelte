@@ -5,7 +5,6 @@
     //import logo_black_path from "logo/logo_black.png";
     import {is_dark_mode} from "$lib/darkmode_store";
 
-    //export let is_dark_mode: boolean;
     let logo_path: string;
     $: {
         logo_path = $is_dark_mode? logo_white_path: logo_black_path;

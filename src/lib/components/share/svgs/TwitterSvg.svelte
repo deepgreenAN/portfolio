@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {is_dark_mode} from '$lib/darkmode_store';
-    //export let is_dark_mode: boolean;
 </script>
 
 

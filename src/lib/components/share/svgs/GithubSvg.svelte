@@ -1,6 +1,5 @@
 <script lang="ts">
   import {is_dark_mode} from '$lib/darkmode_store';
-  //export let is_dark_mode: boolean;
 </script>
 
 <svg class:is_dark_mode={$is_dark_mode} width="1024px" height="1024px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">

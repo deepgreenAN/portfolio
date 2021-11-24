@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {is_dark_mode} from '$lib/darkmode_store';
-	//export let is_dark_mode: boolean;
 </script>
 
 <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
