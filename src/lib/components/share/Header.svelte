@@ -1,4 +1,5 @@
 <script lang="ts">
+    import logo_icon_path from "@static/logo_icon.svg";
     import logo_white_path from "@static/logo/logo_white.png";
     //import logo_white_path from "logo/logo_white.png";
     import logo_black_path from "@static/logo/logo_black.png";
@@ -14,7 +15,12 @@
 </script>
 
 <div class="header" class:is_dark_mode={$is_dark_mode}>
-    <a href="/"><img src={logo_path} class="h-20 ml-4" alt="logo"></a>
+    <a href="/">
+        <div class="flex flex-row justify-start items-center">
+            <img src={logo_icon_path} class="h-16 w-auto ml-4" alt="logo_icon">
+            <img src={logo_path} class="h-20 w-auto" alt="logo">
+        </div>
+    </a>
     <div class="flex flex-row justify-end">
         <DarkToggleSwitch/>
         <div class="w-32"></div>

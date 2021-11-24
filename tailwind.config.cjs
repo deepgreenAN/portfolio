@@ -18,6 +18,9 @@ const config = {
         '8/10':'80%',
         '9/10':'90%'
       },
+      inset: {
+        '0.5':'0.125rem'
+      },
       colors: {
         primary: "#374151",
         bgcolor: "#d1d5db",

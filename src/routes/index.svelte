@@ -28,6 +28,10 @@
     export let works: Work[];
 </script>
 
+<svelte:head>
+    <title>asami naoto portfolio home</title>
+</svelte:head>
+
 <div class="w-3/5 mx-auto flex flex-col gap-10">
     <div class="mt-5">
         <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>

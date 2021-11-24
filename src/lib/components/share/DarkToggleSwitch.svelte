@@ -2,7 +2,7 @@
     import {is_dark_mode} from '$lib/darkmode_store';
 </script>
 
-<div class="flex flex-col gap-1 items-center cursor-pointer" on:click={()=>{is_dark_mode.inverse()}}>
+<div class="flex flex-col gap-2 items-center cursor-pointer" on:click={()=>{is_dark_mode.inverse()}}>
     <svg
         class:is_dark_mode={$is_dark_mode} version="1.1" 
         xmlns="http://www.w3.org/2000/svg" 
@@ -18,8 +18,8 @@
     </svg>
 
     <div class="relative">
-      <div class="block bg-white w-10 h-6 rounded-full"></div>
-      <div class="absolute left-1 top-1 bg-primary w-4 h-4 rounded-full transition" class:circle_is_dark_mode={$is_dark_mode}></div>
+      <div class="block bg-white w-9 h-5 rounded-full"></div>
+      <div class="absolute left-0.5 top-0.5 bg-primary w-4 h-4 rounded-full transition" class:circle_is_dark_mode={$is_dark_mode}></div>
     </div>
 </div>
 
