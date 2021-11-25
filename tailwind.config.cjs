@@ -36,6 +36,7 @@ const config = {
   },
   
   plugins: [
+    require('@tailwindcss/aspect-ratio')
   ],
 };
 

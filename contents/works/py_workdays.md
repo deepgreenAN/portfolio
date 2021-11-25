@@ -22,20 +22,18 @@ workdays = get_workdays(start_date, end_date)
 workdays
 ```
 
-
-
-
-    array([datetime.date(2021, 1, 4), datetime.date(2021, 1, 5),
-           datetime.date(2021, 1, 6), datetime.date(2021, 1, 7),
-           datetime.date(2021, 1, 8), datetime.date(2021, 1, 12),
-           datetime.date(2021, 1, 13), datetime.date(2021, 1, 14),
-           datetime.date(2021, 1, 15), datetime.date(2021, 1, 18),
-           datetime.date(2021, 1, 19), datetime.date(2021, 1, 20),
-           datetime.date(2021, 1, 21), datetime.date(2021, 1, 22),
-           datetime.date(2021, 1, 25), datetime.date(2021, 1, 26),
-           datetime.date(2021, 1, 27), datetime.date(2021, 1, 28),
-           datetime.date(2021, 1, 29)], dtype=object)
-
+```
+array([datetime.date(2021, 1, 4), datetime.date(2021, 1, 5),
+        datetime.date(2021, 1, 6), datetime.date(2021, 1, 7),
+        datetime.date(2021, 1, 8), datetime.date(2021, 1, 12),
+        datetime.date(2021, 1, 13), datetime.date(2021, 1, 14),
+        datetime.date(2021, 1, 15), datetime.date(2021, 1, 18),
+        datetime.date(2021, 1, 19), datetime.date(2021, 1, 20),
+        datetime.date(2021, 1, 21), datetime.date(2021, 1, 22),
+        datetime.date(2021, 1, 25), datetime.date(2021, 1, 26),
+        datetime.date(2021, 1, 27), datetime.date(2021, 1, 28),
+        datetime.date(2021, 1, 29)], dtype=object)
+```
 
 
 ### 営業日かどうか判定
@@ -48,11 +46,9 @@ select_date = datetime.date(2021,1,1)
 check_workday(select_date)
 ```
 
-
-
-
-    False
-
+```
+False
+```
 
 
 ### 次の営業日を取得
@@ -66,11 +62,9 @@ next_workday = get_next_workday(select_date, days=6)
 next_workday
 ```
 
-
-
-
-    datetime.date(2021, 1, 12)
-
+```
+datetime.date(2021, 1, 12)
+```
 
 
 ### 指定する日数分の営業日を取得 
@@ -86,20 +80,18 @@ workdays = get_workdays_number(start_date, days)
 workdays
 ```
 
-
-
-
-    array([datetime.date(2021, 1, 4), datetime.date(2021, 1, 5),
-           datetime.date(2021, 1, 6), datetime.date(2021, 1, 7),
-           datetime.date(2021, 1, 8), datetime.date(2021, 1, 12),
-           datetime.date(2021, 1, 13), datetime.date(2021, 1, 14),
-           datetime.date(2021, 1, 15), datetime.date(2021, 1, 18),
-           datetime.date(2021, 1, 19), datetime.date(2021, 1, 20),
-           datetime.date(2021, 1, 21), datetime.date(2021, 1, 22),
-           datetime.date(2021, 1, 25), datetime.date(2021, 1, 26),
-           datetime.date(2021, 1, 27), datetime.date(2021, 1, 28),
-           datetime.date(2021, 1, 29)], dtype=object)
-
+```
+array([datetime.date(2021, 1, 4), datetime.date(2021, 1, 5),
+        datetime.date(2021, 1, 6), datetime.date(2021, 1, 7),
+        datetime.date(2021, 1, 8), datetime.date(2021, 1, 12),
+        datetime.date(2021, 1, 13), datetime.date(2021, 1, 14),
+        datetime.date(2021, 1, 15), datetime.date(2021, 1, 18),
+        datetime.date(2021, 1, 19), datetime.date(2021, 1, 20),
+        datetime.date(2021, 1, 21), datetime.date(2021, 1, 22),
+        datetime.date(2021, 1, 25), datetime.date(2021, 1, 26),
+        datetime.date(2021, 1, 27), datetime.date(2021, 1, 28),
+        datetime.date(2021, 1, 29)], dtype=object)
+```
 
 
 ### 営業日・営業時間内か判定
@@ -115,11 +107,9 @@ select_datetime = datetime.datetime(2021,1,4,10,0,0)
 check_workday_intraday(select_datetime)
 ```
 
-
-
-
-    True
-
+```
+True
+```
 
 
 ### 指定日時から最も近い次の営業日・営業時間の日時を取得
@@ -133,11 +123,9 @@ next_border_datetime, border_symbol = get_next_border_workday_intraday(select_da
 next_border_datetime, border_symbol
 ```
 
-
-
-
-    (datetime.datetime(2021, 1, 4, 9, 0), 'border_start')
-
+```
+(datetime.datetime(2021, 1, 4, 9, 0), 'border_start')
+```
 
 
 ### 指定日時とtimedeltaから営業時間分加算する
@@ -153,11 +141,9 @@ added_datetime = add_workday_intraday_datetime(select_datetime, datetime.timedel
 added_datetime
 ```
 
-
-
-
-    datetime.datetime(2021, 1, 4, 11, 0)
-
+```
+datetime.datetime(2021, 1, 4, 11, 0)
+```
 
 
 ### 指定期間の営業時間分のtimedeltaを取得する
@@ -176,24 +162,17 @@ workdays_intraday_timedelta = get_timedelta_workdays_intraday(start_datetime, en
 workdays_intraday_timedelta
 ```
 
-
-
-
-    datetime.timedelta(seconds=18000)
-
-
-
+```
+datetime.timedelta(seconds=18000)
+```
 
 ```python
 5*60*60  # ５時間分
 ```
 
-
-
-
-    18000
-
-
+```
+18000
+```
 
 ### 既存のpandas.DataFrameから営業日・営業時間のものを取得
 
@@ -212,17 +191,7 @@ p.line(x, aware_stock_df["Close_6502"])
 show(p)
 ```
 
-
-
-
-
-
-
 <img src="https://dl.dropboxusercontent.com/s/kwn4se2e7dwj49p/raw_stock_df.png">
-
-
-
-
 
 
 ```python
@@ -236,16 +205,7 @@ p.line(x, extracted_stock_df["Close_6502"])
 show(p)
 ```
 
-
-
-
-
-
-
-
 <img src="https://dl.dropboxusercontent.com/s/1mt3v00yrnrjbfs/extract_stock_df_ver1.png">
-
-
 
 途中1日分データが抜けているがこれはデータの方のミスです
 
@@ -267,15 +227,16 @@ print(option.holiday_end_year)
 print(option.holidays_date_array[-5:])
 ```
 
-    2016
-    [datetime.date(2016, 1, 1) datetime.date(2016, 1, 11)
-     datetime.date(2016, 2, 11) datetime.date(2016, 3, 20)
-     datetime.date(2016, 3, 21)]
-    2021
-    [datetime.date(2021, 8, 9) datetime.date(2021, 9, 20)
-     datetime.date(2021, 9, 23) datetime.date(2021, 11, 3)
-     datetime.date(2021, 11, 23)]
-    
+```
+2016
+[datetime.date(2016, 1, 1) datetime.date(2016, 1, 11)
+    datetime.date(2016, 2, 11) datetime.date(2016, 3, 20)
+    datetime.date(2016, 3, 21)]
+2021
+[datetime.date(2021, 8, 9) datetime.date(2021, 9, 20)
+    datetime.date(2021, 9, 23) datetime.date(2021, 11, 3)
+    datetime.date(2021, 11, 23)]
+``` 
 
 #### 休日の取得 
 
@@ -292,9 +253,10 @@ print(option.backend)
 print(option.csv_source_paths)
 ```
 
-    csv
-    [WindowsPath('py_workdays/source/holiday_naikaku.csv')]
-    
+```
+csv
+[WindowsPath('py_workdays/source/holiday_naikaku.csv')]
+``` 
 
 ここで，`csv_source_paths`のデフォルトは自動的にpyworkdaysのあるディレクトリのsourceディレクトリ内のholiday_naikaku.csv一つです．
 
@@ -309,9 +271,10 @@ print(option.holiday_weekdays)
 print(option.intraday_borders)
 ```
 
-    [5, 6]
-    [[datetime.time(9, 0), datetime.time(11, 30)], [datetime.time(12, 30), datetime.time(15, 0)]]
-    
+```
+[5, 6]
+[[datetime.time(9, 0), datetime.time(11, 30)], [datetime.time(12, 30), datetime.time(15, 0)]]
+``` 
 
 #### Optionの変更 
 

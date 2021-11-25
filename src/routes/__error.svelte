@@ -20,15 +20,11 @@
     <title>{status_code}</title>
 </svelte:head>
 
-<div class="w-3/5 mx-auto flex flex-col">
-    <div class="mt-5"></div>
-    <div class=box class:box_is_dark_mode={$is_dark_mode}>
-        <div class="markdown">
-            <h1>{status_code}</h1>
-            <p>{message}</p>
-        </div>
+<div class=box class:box_is_dark_mode={$is_dark_mode}>
+    <div class="markdown">
+        <h1>{status_code}</h1>
+        <p>{message}</p>
     </div>
-    <div class="mb-5"></div>
 </div>
 
 <style>

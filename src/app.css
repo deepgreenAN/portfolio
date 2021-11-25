@@ -3,9 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    margin:0px;
+    padding:0px;
+    background-color: black;
+}
 
 .markdown {
-    @apply leading-relaxed text-base;
+  @apply leading-relaxed text-base;
+  max-width: 90vw;
 }
 
 /* Headers */

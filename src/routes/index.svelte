@@ -32,8 +32,8 @@
     <title>asami naoto portfolio home</title>
 </svelte:head>
 
-<div class="w-3/5 mx-auto flex flex-col gap-10">
-    <div class="mt-5">
+<div class="flex flex-col gap-10">
+    <div>
         <h2 class:is_dark_mode={$is_dark_mode}>AboutMe</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
@@ -110,8 +110,8 @@
                 {#each works as work}     
                     <div class="border-2 rounded p-2 border-border relative" class:is_dark_mode={$is_dark_mode}>
                         <div class="text-xl ml-4 mb-2">{work.title}</div>
-                        <div class="bg-bgcolor h-40">
-                            <img src={work.image_path} alt="workimage" class="h-40 mx-auto" loading="eagar">
+                        <div class="bg-bgcolor w-full aspect-w-16 aspect-h-9">
+                            <img src={work.image_path} alt="workimage" class="h-full mx-auto" loading="eagar">
                         </div>
                         <div>{work.desc}</div>
                         <a href={"/works/"+work.slug} sveltekit:prefetch>
@@ -122,7 +122,9 @@
             </div>
         </div>
     </div>
-    <div class="mb-5"></div>
+</div>
+<div class="box" class:box_is_dark_mode={$is_dark_mode}>
+    <a href="/works/test">テストテストテストテスト</a>
 </div>
 
 <style>

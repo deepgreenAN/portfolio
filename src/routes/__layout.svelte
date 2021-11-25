@@ -97,7 +97,11 @@
         <Header/>
     </div>
     <div id="contents">
-        <slot></slot>
+        <div class="w-9/10 mx-auto sm:w-3/5 sm:mx-auto flex flex-col">
+            <div class="mt-5"></div>
+            <slot></slot>
+            <div class="mb-5"></div>
+        </div>
     </div>
     <div id="footer">
         <Footer/>
@@ -112,17 +116,13 @@
 />
 
 <style>
-    :global(body) {
-        margin:0px;
-        padding:0px;
-        background-color: black;
-    }
     #main-container {
         padding: 0px;
         margin: 0px;
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
+        max-width: 100vw;
     }
     #header {
         grid-row: 1/2;

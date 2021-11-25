@@ -29,14 +29,11 @@
     {/if}
 </svelte:head>
 
-<div class="w-3/5 mx-auto flex flex-col">
-    <div class="mt-5"></div>
-    <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-        <div class="markdown">
-            {@html html_with_meta.content}
-        </div>
+
+<div class="box" class:box_is_dark_mode={$is_dark_mode}>
+    <div class="markdown">
+        {@html html_with_meta.content}
     </div>
-    <div class="mb-5"></div>
 </div>
 
 <style>
