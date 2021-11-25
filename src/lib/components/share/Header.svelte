@@ -1,7 +1,7 @@
 <script lang="ts">
-    import logo_icon_path from "/logo_icon.svg";  // static
-    import logo_white_path from "/logo/logo_white.png";  // static
-    import logo_black_path from "/logo/logo_black.png";  // static
+    import logo_icon_path from "@static/logo_icon.svg";  // static
+    import logo_white_path from "@static/logo/logo_white.png";  // static
+    import logo_black_path from "@static/logo/logo_black.png";  // static
     import {is_dark_mode} from "$lib/darkmode_store";
     import DarkToggleSwitch from "./DarkToggleSwitch.svelte";
 

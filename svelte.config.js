@@ -20,7 +20,8 @@ const config = {
       resolve: {
         alias: {
           // these are the aliases and paths to them
-          '@contents': path.resolve('./contents')
+          '@contents': path.resolve('./contents'),
+          '@static': path.resolve('./static')
         }
       }
     }

@@ -22,7 +22,7 @@
 </script>
 
 <script lang="ts">
-    import profile_img_path from '/profile.png';  // profile
+    import profile_img_path from '@static/profile.png';  // profile
     import {is_dark_mode} from '$lib/darkmode_store';
     import MailSvg from '$lib/components/share/svgs/MailSvg.svelte';
     import WantedlySvg from '$lib/components/share/svgs/WantedlySvg.svelte';
