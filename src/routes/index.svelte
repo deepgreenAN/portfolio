@@ -132,11 +132,11 @@
         <h2 class:is_dark_mode={$is_dark_mode}>Contact Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col border-border" class:is_dark_mode={$is_dark_mode}>
-                <a href="mailto:asami73dgreen63@gmail.com"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><MailSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto">mail to asami naoto(asami73dgreen63@gmail.com)</div> </div> </a>
-                <a href="https://www.wantedly.com/id/naoto_asami_a"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><WantedlySvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto">https://www.wantedly.com/id/naoto_asami_a</div> </div> </a>
-                <a href="https://twitter.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><TwitterSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto">https://twitter.com/deepgreenAN</div> </div> </a>
-                <a href="https://github.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><GithubSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto">https://github.com/deepgreenAN</div> </div> </a>
-                <a href="https://qiita.com/deepgreenAN"> <div class="flex flex-row h-12 hover:underline"> <div class="w-12 my-auto"><QiitaSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto">https://qiita.com/deepgreenAN</div> </div> </a>
+                <a href="mailto:asami73dgreen63@gmail.com"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><MailSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">mail to asami naoto(asami73dgreen63@gmail.com)</div> </div> </a>
+                <a href="https://www.wantedly.com/id/naoto_asami_a"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><WantedlySvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://www.wantedly.com/id/naoto_asami_a</div> </div> </a>
+                <a href="https://twitter.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><TwitterSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://twitter.com/deepgreenAN</div> </div> </a>
+                <a href="https://github.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><GithubSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://github.com/deepgreenAN</div> </div> </a>
+                <a href="https://qiita.com/deepgreenAN"> <div class="flex flex-row h-12 hover:underline"> <div class="w-12 my-auto"><QiitaSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://qiita.com/deepgreenAN</div> </div> </a>
             </div>
         </div>
     </div>
@@ -149,6 +149,7 @@
     * {
         border-color: inherit;
     }
+
     h2 {
         @apply pl-3 text-3xl text-primary;
     }
