@@ -1,9 +1,9 @@
 <script lang="ts">
-	import {is_dark_mode} from '$lib/darkmode_store';
+	export let is_dark_mode: boolean;
 </script>
 
 
-<svg class:is_dark_mode={$is_dark_mode} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+<svg class:is_dark_mode={is_dark_mode} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 	 viewBox="0 0 310 310" style="enable-background:new 0 0 310 310;" xml:space="preserve">
 <g id="XMLID_826_">
 	<path id="XMLID_827_" d="M302.973,57.388c-4.87,2.16-9.877,3.983-14.993,5.463c6.057-6.85,10.675-14.91,13.494-23.73

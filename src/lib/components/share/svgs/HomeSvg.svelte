@@ -1,9 +1,9 @@
 <script lang="ts">
-	import {is_dark_mode} from '$lib/darkmode_store';
+	export let is_dark_mode: boolean;
 </script>
 
 <!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg class:is_dark_mode={$is_dark_mode} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+<svg class:is_dark_mode={is_dark_mode} version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 	 viewBox="0 0 330.242 330.242" style="enable-background:new 0 0 330.242 330.242;" xml:space="preserve">
 <path d="M324.442,129.811l-41.321-33.677V42.275c0-6.065-4.935-11-11-11h-26c-6.065,0-11,4.935-11,11v14.737l-55.213-44.999
 	c-3.994-3.254-9.258-5.047-14.822-5.047c-5.542,0-10.781,1.782-14.753,5.019L5.8,129.81c-6.567,5.351-6.173,10.012-5.354,12.314
