@@ -21,11 +21,11 @@
     // レスポンシブにポールの数を決定
     let ball_number: number;
     if (browser) {  // クライアント側で実行する場合
-        if (window.matchMedia('(min-width: 1024px)')) {
+        if (window.matchMedia('(min-width: 1024px)').matches) {
             ball_number = 30;
-        } else if (window.matchMedia('(min-width: 768px)')) {
+        } else if (window.matchMedia('(min-width: 768px)').matches) {
             ball_number = 20;
-        } else if (window.matchMedia('(min-width: 640px)')) {
+        } else if (window.matchMedia('(min-width: 640px)').matches) {
             ball_number = 15;
         } else {
             ball_number = 10;
