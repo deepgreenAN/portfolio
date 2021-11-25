@@ -1,2 +1,2 @@
-好きなフレーズは"Whenever you are feeling blue keep walking and we can get far, where ever you are"です．
+好きなフレーズは&quot;Whenever you are feeling blue keep walking and we can get far, where ever you are&quot;です．
 現在は大学院を中退して就職活動をしています．フロントエンドからバックエンド，機械学習にアルゴリズムまで様々な分野に興味を持って勉強中です．

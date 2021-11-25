@@ -22,7 +22,7 @@
 </script>
 
 <script lang="ts">
-    import profile_img_path from '@static/profile.png';
+    import profile_img_path from '/profile.png';  // profile
     import {is_dark_mode} from '$lib/darkmode_store';
     import MailSvg from '$lib/components/share/svgs/MailSvg.svelte';
     import WantedlySvg from '$lib/components/share/svgs/WantedlySvg.svelte';
@@ -63,7 +63,7 @@
                         <div class="border-b-2 pl-2"> フレームワーク・言語 </div>
                         <ul class="break-words">
                             {#each profile_data.skills as skill}
-                            <li class="ml-6">{skill}</li>
+                            <li class="ml-6">{@html skill}</li>
                             {/each}
                         </ul>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="border-b-2 pl-2"> その他のスキル </div>
                         <ul class="break-words">
                             {#each profile_data.other_skills as other_skill}
-                            <li class="ml-6">{other_skill}</li>
+                            <li class="ml-6">{@html other_skill}</li>
                             {/each}
                         </ul>
                     </div>
@@ -104,7 +104,7 @@
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <ul class="break-words">
                 {#each profile_data.other_credentials as credential}
-                    <li class="ml-6">{credential}</li>
+                    <li class="ml-6">{@html credential}</li>
                 {/each}
             </ul>
         </div>
@@ -121,7 +121,7 @@
                         </div>
                         <div>{work.desc}</div>
                         <a href={"/works/"+work.slug} sveltekit:prefetch>
-                            <div class="absolute left-0 top-0 w-full h-full bg-darkbgcolor border-none opacity-0 hover:opacity-40" class:bg_hover_is_dark_mode={$is_dark_mode}></div>
+                            <div class="absolute left-0 top-0 w-full h-full rounded bg-darkbgcolor opacity-0 hover:opacity-40" class:bg_hover_is_dark_mode={$is_dark_mode}></div>
                         </a>
                     </div>
                 {/each}
@@ -132,7 +132,7 @@
         <h2 class:is_dark_mode={$is_dark_mode}>Contact Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col border-border" class:is_dark_mode={$is_dark_mode}>
-                <a href="mailto:asami73dgreen63@gmail.com"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><MailSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">mail to asami naoto(asami73dgreen63@gmail.com)</div> </div> </a>
+                <a href="mailto:asami73dgreen63@gmail.com"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><MailSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">mail to Asami Naoto(asami73dgreen63@gmail.com)</div> </div> </a>
                 <a href="https://www.wantedly.com/id/naoto_asami_a"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><WantedlySvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://www.wantedly.com/id/naoto_asami_a</div> </div> </a>
                 <a href="https://twitter.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><TwitterSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://twitter.com/deepgreenAN</div> </div> </a>
                 <a href="https://github.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><GithubSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://github.com/deepgreenAN</div> </div> </a>
@@ -140,9 +140,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-        <a href="/works/test">テストテストテストテスト</a>
-    </div> -->
 </div>
 
 <style>
@@ -165,9 +162,6 @@
         @apply text-darkprimary border-darkborder;
     }
 
-    .bg_is_dark_mode {
-        @apply bg-darkbgcolor;
-    }
     .bg_hover_is_dark_mode {
         @apply bg-bgcolor;
     }
