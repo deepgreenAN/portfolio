@@ -1,6 +1,7 @@
 <script lang="ts">
     import "../app.css";
     import {onMount, onDestroy} from "svelte";
+    import { browser } from '$app/env';
     import init, {CanvasApp} from '$lib/wasm/pkg/wasm';
     import type {IAppOption} from '$lib/wasm/pkg/wasm';
     import wasm_path from "$lib/wasm/pkg/wasm_bg.wasm?url";
@@ -17,10 +18,26 @@
 
     const PI = 3.1415
 
+    // レスポンシブにポールの数を決定
+    let ball_number: number;
+    if (browser) {  // クライアント側で実行する場合
+        if (window.matchMedia('(min-width: 1024px)')) {
+            ball_number = 30;
+        } else if (window.matchMedia('(min-width: 768px)')) {
+            ball_number = 20;
+        } else if (window.matchMedia('(min-width: 640px)')) {
+            ball_number = 15;
+        } else {
+            ball_number = 10;
+        }
+    } else {
+        ball_number = 30;
+    }
+
     let app_opt : IAppOption = {
         canvas_id: "app-canvas",
         background_color: init_canvas_color,
-        n_balls: 30,
+        n_balls: ball_number,
         v_abs_max: 1.5,
         r_max: 50.0,
         r_min: 10.0,
