@@ -4,6 +4,7 @@ import path from 'path'
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
+  extensions: [".svelte", ".svg"],
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
   preprocess: [

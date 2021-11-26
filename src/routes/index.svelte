@@ -24,14 +24,24 @@
 <script lang="ts">
     import profile_img_path from '@static/profile.png';  // profile
     import {is_dark_mode} from '$lib/darkmode_store';
-    import MailSvg from '$lib/components/share/svgs/MailSvg.svelte';
-    import WantedlySvg from '$lib/components/share/svgs/WantedlySvg.svelte';
-    import TwitterSvg from '$lib/components/share/svgs/TwitterSvg.svelte';
-    import GithubSvg from '$lib/components/share/svgs/GithubSvg.svelte';
-    import QiitaSvg from '$lib/components/share/svgs/QiitaSvg.svelte'
+    import SvgWrapper from '$lib/components/share/SvgWrapper.svelte';
+    import MailSvg from '$lib/components/share/svgs/mail-svgrepo-com.svg';
+    import WantedlySvg from '$lib/components/share/svgs/wantedly.svg';
+    import TwitterSvg from '$lib/components/share/svgs/twitter-svgrepo-com.svg';
+    import GithubSvg from '$lib/components/share/svgs/github-svgrepo-com.svg';
+    import QiitaSvg from '$lib/components/share/svgs/qiita.svg';
 
     export let profile_data: Profile;
     export let works: Work[];
+
+    // contact meについての変数
+    const contact_me_list: {ref:string, Component:string, desc:string}[] = [
+        {ref:"mailto:asami73dgreen63@gmail.com", Component:MailSvg, desc:"mail to Asami Naoto(asami73dgreen63@gmail.com)"},
+        {ref:"https://www.wantedly.com/id/naoto_asami_a", Component:WantedlySvg, desc:"https://www.wantedly.com/id/naoto_asami_a"},
+        {ref:"https://twitter.com/deepgreenAN", Component:TwitterSvg, desc:"https://twitter.com/deepgreenAN"},
+        {ref:"https://github.com/deepgreenAN", Component:GithubSvg, desc:"https://github.com/deepgreenAN"},
+        {ref:"https://qiita.com/deepgreenAN", Component:QiitaSvg, desc:"https://qiita.com/deepgreenAN"}
+    ];
 </script>
 
 <svelte:head>
@@ -40,7 +50,7 @@
 
 <div class="flex flex-col gap-10">
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>About Me</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>About Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
                 <div class="flex flex-row">
@@ -55,7 +65,7 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>Skills</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>Skills</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
                 <div class="flex flex-row">
@@ -81,7 +91,7 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>Educations</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>Educations</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
                 {#each profile_data.educations as education}
@@ -100,7 +110,7 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>資格・賞</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>資格・賞</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <ul class="break-words">
                 {#each profile_data.other_credentials as credential}
@@ -110,7 +120,7 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>Works</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>Works</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="grid grid-cols-2 gap-5">
                 {#each works as work}     
@@ -129,14 +139,25 @@
         </div>
     </div>
     <div>
-        <h2 class:is_dark_mode={$is_dark_mode}>Contact Me</h2>
+        <h2 class:h2_is_dark_mode={$is_dark_mode}>Contact Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
-            <div class="flex flex-col border-border" class:is_dark_mode={$is_dark_mode}>
-                <a href="mailto:asami73dgreen63@gmail.com"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><MailSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">mail to Asami Naoto(asami73dgreen63@gmail.com)</div> </div> </a>
-                <a href="https://www.wantedly.com/id/naoto_asami_a"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><WantedlySvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://www.wantedly.com/id/naoto_asami_a</div> </div> </a>
-                <a href="https://twitter.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><TwitterSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://twitter.com/deepgreenAN</div> </div> </a>
-                <a href="https://github.com/deepgreenAN"> <div class="flex flex-row border-b-2 h-12 hover:underline"> <div class="w-12 my-auto"><GithubSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://github.com/deepgreenAN</div> </div> </a>
-                <a href="https://qiita.com/deepgreenAN"> <div class="flex flex-row h-12 hover:underline"> <div class="w-12 my-auto"><QiitaSvg is_dark_mode={$is_dark_mode}/></div> <div class="ml-8 my-auto break-all">https://qiita.com/deepgreenAN</div> </div> </a>
+            <div class="flex flex-col">
+                {#each contact_me_list as ContactMe}
+                    <div class="relative border-b-2 h-12 hover:underline">                    
+                        <div class="flex flex-row">
+                            <div class="w-12 my-auto">
+                                <SvgWrapper is_dark_mode={$is_dark_mode}>
+                                    <!-- <ContactMe.Component /> -->
+                                    <svelte:component this={ContactMe.Component}/>
+                                </SvgWrapper>
+                            </div>
+                            <div class="ml-8 my-auto break-all">{ContactMe.desc}</div>
+                        </div>
+                        <a href={ContactMe.ref}>
+                            <div class="absolute top-0 left-0 w-full h-full bg-darkbgcolor opacity-0 hover:opacity-40" class:bg_hover_is_dark_mode={$is_dark_mode}></div>
+                        </a>
+                    </div>
+                {/each}
             </div>
         </div>
     </div>
@@ -150,6 +171,10 @@
     h2 {
         @apply pl-3 text-3xl text-primary;
     }
+
+    .h2_is_dark_mode {
+        @apply text-darkprimary border-darkborder;
+    }
     .box {
         @apply bg-bgcolor bg-opacity-60 border-border border-solid rounded text-primary text-opacity-100 p-2;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
@@ -158,10 +183,6 @@
         @apply bg-darkbgcolor bg-opacity-60 border-darkborder border-solid rounded text-darkprimary text-opacity-100 p-2;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.25);
     }
-    .is_dark_mode {
-        @apply text-darkprimary border-darkborder;
-    }
-
     .bg_hover_is_dark_mode {
         @apply bg-bgcolor;
     }

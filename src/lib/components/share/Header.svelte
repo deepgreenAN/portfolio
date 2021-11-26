@@ -1,5 +1,6 @@
 <script lang="ts">
-    import logo_icon_path from "@static/logo_icon.svg";  // static
+    import logo_icon_path from "@static/logo_icon.svg?url";  // sttic(画像として)
+
     import logo_white_path from "@static/logo/logo_white.png";  // static
     import logo_black_path from "@static/logo/logo_black.png";  // static
     import {is_dark_mode} from "$lib/darkmode_store";
@@ -15,6 +16,7 @@
 <div class="header" class:is_dark_mode={$is_dark_mode}>
     <a href="/">
         <div class="flex flex-row items-center">
+            <div class="h-16 ml-4"></div>
             <img src={logo_icon_path} class="h-16 ml-4" alt="logo_icon">
             <div class="aspect-w-5 aspect-h-1 w-80">
                 <img src={logo_path} id="text-logo" alt="logo">
