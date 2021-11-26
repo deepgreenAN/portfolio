@@ -147,7 +147,6 @@
                         <div class="flex flex-row">
                             <div class="w-12 my-auto">
                                 <SvgWrapper is_dark_mode={$is_dark_mode}>
-                                    <!-- <ContactMe.Component /> -->
                                     <svelte:component this={ContactMe.Component}/>
                                 </SvgWrapper>
                             </div>
