@@ -1,5 +1,7 @@
 ---
 title: py-workdays
+page_desc: 営業日のデータを取得，営業時間での演算，`pandas.DataFrame`からの営業日・営業時間のデータの抽出ができるライブラリ．
+og_image_url: /logo_icon.png
 use_code: true
 use_katex: false
 ---

@@ -1,5 +1,7 @@
 ---
 title: trade system
+og_image_url: https://dl.dropboxusercontent.com/s/4kdoqm66qcw9zmy/trading_system_small.PNG
+page_desc: 株式データの運用，取引の可視化，ポートフォリオ選択のための方策決定アルゴリズム，価格データの回帰(todo)，バックテスト(todo)のためのモジュールからなるパッケージ
 use_code: true
 use_katex: false
 ---

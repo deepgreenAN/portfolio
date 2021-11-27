@@ -1,5 +1,7 @@
 ---
 title: SSII2020発表論文
+og_image_url: https://dl.dropboxusercontent.com/s/nr5pxpnlv0il2ty/full_model_structure_small.png
+page_desc: 動画像から取得した骨格データからの個人識別において観測方向などを潜在変数としてモデルに組み込むために，深層学習を用いた生成モデルを用いたアプローチで識別を行った論文です．
 use_code: false
 use_katex: true
 ---

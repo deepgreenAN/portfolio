@@ -2,6 +2,7 @@
     import type {Load} from '@sveltejs/kit';
     import type {Profile} from '$lib/profile';
     import type {Work} from '$lib/work';
+    import type {MetaProperty} from '$lib/meta_property';
     import type {HomeResp} from './index.json';
     
     export const load: Load = async ({fetch}) => {
@@ -11,7 +12,8 @@
             return {
                 props: {
                     profile_data: profile_data.about_me,
-                    works: profile_data.works
+                    works: profile_data.works,
+                    meta_property: profile_data.meta_property
                 }
             }
         } else {
@@ -30,9 +32,12 @@
     import TwitterSvg from '$lib/components/share/svgs/twitter-svgrepo-com.svg';
     import GithubSvg from '$lib/components/share/svgs/github-svgrepo-com.svg';
     import QiitaSvg from '$lib/components/share/svgs/qiita.svg';
+    import Seo from '$lib/components/share/Seo.svelte';
 
     export let profile_data: Profile;
     export let works: Work[];
+    export let meta_property: MetaProperty;
+    
 
     // contact meについての変数
     const contact_me_list: {ref:string, Component:string, desc:string}[] = [
@@ -44,12 +49,16 @@
     ];
 </script>
 
-<svelte:head>
-    <title>asami naoto portfolio home</title>
-</svelte:head>
+<Seo 
+    title={meta_property.title} 
+    is_top_page={meta_property.is_top_page}
+    page_path={meta_property.page_path}
+    page_desc={meta_property.page_desc}
+    og_image_url={meta_property.og_image_url}
+/>
 
 <div class="flex flex-col gap-10">
-    <div>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>About Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
@@ -63,8 +72,8 @@
                 <div class="p-1 mt-2"> {@html profile_data.about_me_desc} </div>
             </div>
         </div>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>Skills</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
@@ -89,8 +98,8 @@
                 <div class="p-1 border-t-2">{@html profile_data.skills_desk}</div>
             </div>
         </div>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>Educations</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
@@ -108,8 +117,8 @@
                 {/each}
             </div>
         </div>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>資格・賞</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <ul class="break-words">
@@ -118,8 +127,8 @@
                 {/each}
             </ul>
         </div>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>Works</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="grid grid-cols-2 gap-5">
@@ -137,15 +146,15 @@
                 {/each}
             </div>
         </div>
-    </div>
-    <div>
+    </section>
+    <section>
         <h2 class:h2_is_dark_mode={$is_dark_mode}>Contact Me</h2>
         <div class="box" class:box_is_dark_mode={$is_dark_mode}>
             <div class="flex flex-col">
                 {#each contact_me_list as ContactMe}
-                    <div class="relative border-b-2 h-12 hover:underline">                    
-                        <div class="flex flex-row">
-                            <div class="w-12 my-auto">
+                    <div class="relative border-b-2 h-12 hover:underline last:border-b-0">                    
+                        <div class="flex flex-row h-full">
+                            <div class="w-12 h-full flex items-center ml-1">
                                 <SvgWrapper is_dark_mode={$is_dark_mode}>
                                     <svelte:component this={ContactMe.Component}/>
                                 </SvgWrapper>
@@ -159,7 +168,7 @@
                 {/each}
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
 <style>

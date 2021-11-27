@@ -1,5 +1,7 @@
 ---
 title: tracking annotation
+og_image_url: https://dl.dropboxusercontent.com/s/zcysm9eaboevnug/tracking_annotation_small.png
+page_desc: 深層学習などを用いたトラッキングによって，動画から取得できる画像へのアノテーションを補助するアプリケーション．
 use_code: true
 use_katex: false
 ---

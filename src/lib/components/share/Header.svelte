@@ -31,7 +31,7 @@
 
 <style>
     .header {
-        @apply max-w-full sm:w-4/5 h-20 mt-2 mx-2 sm:mx-auto bg-bgcolor opacity-70 rounded-sm flex flex-row items-center justify-between;
+        @apply max-w-full md:w-4/5 sm:w-9/10 h-20 mt-2 mx-2 sm:mx-auto bg-bgcolor opacity-70 rounded-sm flex flex-row items-center justify-between;
         box-shadow: 1.95px 1.95px 2.6px rgb(0, 0, 0, 0.15);
     }
     .is_dark_mode {

@@ -55,7 +55,6 @@
     };
 
     onMount(async ():Promise<void> => {
-        console.log("a");
 
         // 背景を描画するcanvasの設定
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
@@ -110,21 +109,23 @@
 </script>
 
 <div id="main-container">
-    <div id="header">
-        <Header/>
-    </div>
-    <div id="contents">
-        <div class="w-9/10 mx-auto sm:w-3/5 sm:mx-auto flex flex-col">
+    <header id="header">
+         <Header/>
+    </header>
+    <main id="contents">
+        <div class="w-9/10 mx-auto md:w-3/5 sm:w-4/5 sm:mx-auto flex flex-col">
             <div class="mt-5"></div>
             <slot></slot>
             <div class="mb-5"></div>
         </div>
-    </div>
-    <div id="footer">
+    </main>
+    <footer id="footer">
         <Footer/>
-    </div>
+    </footer>
 </div>
-<FixedSideMenu/>
+<aside>
+    <FixedSideMenu/>
+</aside>
 <canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
 <svelte:window 
     on:click={window_click_hundler} 

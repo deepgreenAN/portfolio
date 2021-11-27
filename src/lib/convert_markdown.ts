@@ -12,14 +12,16 @@ import rehypeKatex from "rehype-katex"
 import rehypeStringify from "rehype-stringify"
 import yaml from "yaml"
 
+import type {MetaProperty} from "./meta_property";
+
 /**
 * メタ情報を含めたhtml
 */
 interface HtmlWithMeta {
     /** htmlの文字列 */
     content: string,
-    /** 記事のタイトル */
-    title: string,
+    /** 記事のメタプロパティ */
+    meta_property: MetaProperty
     /** 数式を使うかどうか */
     use_katex: boolean,
     /** コードを使うかどうか */
@@ -32,10 +34,14 @@ interface HtmlWithMeta {
 interface FrontMatter {
     /** 記事のタイトル */
     title: string,
+    /** Ogイメージのurlパス */
+    og_image_url: string,
+    /** ページの概要 */
+    page_desc: string,
     /** 数式を使うかどうか */
     use_katex: boolean,
     /** コードを使うかどうか */
-    use_code: boolean
+    use_code: boolean,
 }
 
 
@@ -57,40 +63,26 @@ function mdToHtml (md: string):HtmlWithMeta {
         .use(rehypeRaw)
         .use(rehypeKatex, {throwOnError: true})
         .use(rehypeStringify);
+        
     const vfile = processer.processSync(md);
     const front_matter = vfile.data as FrontMatter;
+    const meta_property: MetaProperty = {
+        title: front_matter.title,
+        page_path: "not_initialized",  // とりあえずこれで初期化
+        page_desc: front_matter.page_desc,
+        og_image_url: front_matter.og_image_url,
+        is_top_page: false
+    } 
 
     const html_with_meta: HtmlWithMeta = {
         content: vfile.toString(),
-        title: front_matter.title,
+        meta_property: meta_property,
         use_katex: front_matter.use_katex,
         use_code: front_matter.use_code
-        //title: "タイトルです"
-    }
-    // const html_with_meta: HtmlWithMeta = {
-    //     content: "内容です",
-    //     title: "タイトルです"
-    // };
-
-    return html_with_meta
-};
-
-/**
- * mdToHtmlのモック
- * @param md マークダウン文字列
- * @returns メタ情報を含めたhtml
- */
-function mdToHtmlv2 (md: string):HtmlWithMeta {
-    const html_with_meta: HtmlWithMeta = {
-        content: md,
-        title: "タイトルです",
-        use_katex: false,
-        use_code: false
     }
 
     return html_with_meta
 };
 
-//export default {mdToHtml};
-export {mdToHtml, mdToHtmlv2};
+export {mdToHtml};
 export type {HtmlWithMeta};
