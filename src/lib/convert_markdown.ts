@@ -21,7 +21,7 @@ interface HtmlWithMeta {
     /** htmlの文字列 */
     content: string,
     /** 記事のメタプロパティ */
-    meta_property: MetaProperty
+    meta_property: MetaProperty,
     /** 数式を使うかどうか */
     use_katex: boolean,
     /** コードを使うかどうか */

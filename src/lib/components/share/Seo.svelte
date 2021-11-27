@@ -11,7 +11,7 @@
         }
     }
 
-    let base_url = "https://portfolio-khaki-six-33.vercel.app/";
+    let base_url = "https://deepgreen-an.net";
     let absolute_url: string;
     if (page_path!=null) {
         absolute_url = base_url + page_path;
