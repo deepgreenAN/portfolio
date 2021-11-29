@@ -58,8 +58,10 @@
 
         // 背景を描画するcanvasの設定
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        //canvas.width = window.innerWidth;
+        //canvas.height = window.innerHeight;
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight;
         const context = canvas.getContext("2d");
         context.fillStyle = init_canvas_color;
         context.fillRect(0, 0, canvas.width, canvas.height);
@@ -87,8 +89,10 @@
     const window_resize_hundler = (e: any) => {
         // 背景を描画するcanvasの設定
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        //canvas.width = window.innerWidth;
+        //canvas.height = window.innerHeight;
+        canvas.width = document.documentElement.clientWidth;
+        canvas.height = document.documentElement.clientHeight;
         try{
             canvas_app.adjust_canvas_size();
         } catch(e) {
@@ -107,6 +111,7 @@
     }
 
 </script>
+
 
 <div id="main-container">
     <header id="header">
@@ -140,7 +145,7 @@
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
-        max-width: 100vw;
+        width: 100vw;
     }
     #header {
         grid-row: 1/2;
