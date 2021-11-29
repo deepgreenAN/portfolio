@@ -25,7 +25,7 @@
     </a>
     <div class="flex flex-row justify-end">
         <DarkToggleSwitch/>
-        <div class="w-4 sm:w-32"></div>
+        <div class="ml-4 sm:ml-32"></div>
     </div>
 </div>
 

@@ -71,12 +71,21 @@
         canvas_app = new CanvasApp(app_opt);
         canvas_app.init();
 
+        // 一応サイズ調整
+        try{
+            canvas_app.adjust_canvas_size();
+        } catch(e) {
+            console.log(e);
+        }
+
+        // アニメーションの開始
         interval_id = window.setInterval(()=>{
             canvas_app.step();
         },1000/60);
     });
 
     onDestroy(():void =>{
+        // アニメーションの終了
         clearInterval(interval_id);
     });
 
@@ -109,22 +118,21 @@
         const saturation: number = $is_dark_mode? 1.0:0.5;
         canvas_app.set_saturation_and_value(saturation, 1.0);
     }
-
 </script>
 
 
 <div id="main-container">
-    <header id="header">
+    <header class="w-full" id="header">
          <Header/>
     </header>
-    <main id="contents">
-        <div class="w-9/10 mx-auto md:w-3/5 sm:w-4/5 sm:mx-auto flex flex-col">
+    <main class="w-full" id="contents">
+        <div class="w-9/10 mx-auto md:w-3/5 sm:w-4/5 flex flex-col">
             <div class="mt-5"></div>
             <slot></slot>
             <div class="mb-5"></div>
         </div>
     </main>
-    <footer id="footer">
+    <footer class="w-full" id="footer">
         <Footer/>
     </footer>
 </div>
@@ -145,7 +153,7 @@
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
-        width: 100vw;
+        width: 100%;
     }
     #header {
         grid-row: 1/2;
