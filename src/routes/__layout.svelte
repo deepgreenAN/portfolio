@@ -58,11 +58,10 @@
 
         // 背景を描画するcanvasの設定
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
-        //canvas.width = window.innerWidth;
-        //canvas.height = window.innerHeight;
-        canvas.width = document.documentElement.clientWidth;
-        canvas.height = document.documentElement.clientHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         const context = canvas.getContext("2d");
+        //context.scale(1, aspect_ratio);
         context.fillStyle = init_canvas_color;
         context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -70,13 +69,6 @@
         await init(wasm_path);
         canvas_app = new CanvasApp(app_opt);
         canvas_app.init();
-
-        // 一応サイズ調整
-        try{
-            canvas_app.adjust_canvas_size();
-        } catch(e) {
-            console.log(e);
-        }
 
         // アニメーションの開始
         interval_id = window.setInterval(()=>{
@@ -98,10 +90,8 @@
     const window_resize_hundler = (e: any) => {
         // 背景を描画するcanvasの設定
         const canvas = document.getElementById("app-canvas") as HTMLCanvasElement;
-        //canvas.width = window.innerWidth;
-        //canvas.height = window.innerHeight;
-        canvas.width = document.documentElement.clientWidth;
-        canvas.height = document.documentElement.clientHeight;
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
         try{
             canvas_app.adjust_canvas_size();
         } catch(e) {
@@ -120,6 +110,9 @@
     }
 </script>
 
+<svelte:head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.85">
+</svelte:head>
 
 <div id="main-container">
     <header class="w-full" id="header">
@@ -135,11 +128,11 @@
     <footer class="w-full" id="footer">
         <Footer/>
     </footer>
+    <canvas class="fixed top-0 left-0 w-full x-full -z-10" id="app-canvas"></canvas>
 </div>
 <aside>
     <FixedSideMenu/>
 </aside>
-<canvas class="fixed top-0 left-0 -z-10" id="app-canvas"></canvas>
 <svelte:window 
     on:click={window_click_hundler} 
     on:dblclick|preventDefault={()=>{canvas_app.shake()}}

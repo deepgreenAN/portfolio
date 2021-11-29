@@ -10,7 +10,7 @@ body {
 }
 
 .markdown {
-  @apply leading-relaxed text-base;
+  @apply leading-relaxed text-base p-0 m-0;
   max-width: 90vw;
 }
 
