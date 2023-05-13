@@ -8,7 +8,7 @@ use_katex: false
 
 # [莉光迷站](https://rikou-meitan.shuttleapp.rs/)
 
-<img src="https://dl.dropboxusercontent.com/s/xhsqtirbqcp9q17/rikou_meitan.png">
+<img src="https://dl.dropboxusercontent.com/s/bgk0zhcxvng6pre/rikou_meitan_v2.png">
 
 にじさんじ所属のVtuber卯月コウさんと魔界ノりりむさんのコンピ「おりコウ」のファンサイトです。バックエンド・フロントエンドともにRustを用いています。
 以下は開発中に得たフロントエンド部分にRustを利用するメリットとデメリットを紹介します。
