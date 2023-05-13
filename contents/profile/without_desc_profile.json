@@ -1,12 +1,14 @@
 {
     "skills": [
-        "Python", 
-        "Rust", 
+        "Python",
+        "Rust",
         "WebAssembly(Rust)",
         "Svelte",
-        "Svelte Kit", 
-        "Typescript", 
-        "Vue"
+        "Svelte Kit",
+        "Typescript",
+        "Vue",
+        "Axum",
+        "Dioxus"
     ],
     "other_skills": [
         "Pytorch",
@@ -20,9 +22,25 @@
         "普通自動車免許"
     ],
     "educations": [
-        {"start":"2021年4月", "end": null, "belong":"中央大学大学院理工学研究科修士課程を中退・就活中"},
-        {"start":"2020年4月", "end":"2021年4月", "belong":"中央大学大学院理工学研究科精密機械工学専攻に所属"},
-        {"start":"2020年3月", "end": null, "belong":"中央大学理工学部精密機械工学科を卒業"},
-        {"start":"2019年4月", "end":"2021年4月", "belong":"知的計測システム研究室(梅田研)に所属"}
+        {
+            "start": "2021年4月",
+            "end": null,
+            "belong": "中央大学大学院理工学研究科修士課程を中退・就活中"
+        },
+        {
+            "start": "2020年4月",
+            "end": "2021年4月",
+            "belong": "中央大学大学院理工学研究科精密機械工学専攻に所属"
+        },
+        {
+            "start": "2020年3月",
+            "end": null,
+            "belong": "中央大学理工学部精密機械工学科を卒業"
+        },
+        {
+            "start": "2019年4月",
+            "end": "2021年4月",
+            "belong": "知的計測システム研究室(梅田研)に所属"
+        }
     ]
 }

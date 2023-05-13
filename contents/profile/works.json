@@ -1,26 +1,32 @@
 [
     {
-        "slug":"tracking_annotation",
-        "title":"tracking annotation",
-        "image_path":"https://dl.dropboxusercontent.com/s/zcysm9eaboevnug/tracking_annotation_small.png",
-        "desc":"トラッキング技術を用いて補助する動画用アノテーションツール"
+        "slug": "tracking_annotation",
+        "title": "tracking annotation",
+        "image_path": "https://dl.dropboxusercontent.com/s/zcysm9eaboevnug/tracking_annotation_small.png",
+        "desc": "トラッキング技術を用いて補助する動画用アノテーションツール"
     },
     {
-        "slug":"trading_system",
-        "title":"trade system",
-        "image_path":"https://dl.dropboxusercontent.com/s/4kdoqm66qcw9zmy/trading_system_small.PNG",
-        "desc":"トレーディング用の深層強化学習環境．株式データの取得とpfrlによる学習が可能"
+        "slug": "trading_system",
+        "title": "trade system",
+        "image_path": "https://dl.dropboxusercontent.com/s/4kdoqm66qcw9zmy/trading_system_small.PNG",
+        "desc": "トレーディング用の深層強化学習環境．株式データの取得とpfrlによる学習が可能"
     },
     {
-        "slug":"py_workdays",
-        "title":"py-workdays",
-        "image_path":"https://dl.dropboxusercontent.com/s/zw2vdtyt11vcl9s/python_and_rust_small.png",
-        "desc":"営業日・営業時間を取得・データから抜き出しができるライブラリ"
+        "slug": "py_workdays",
+        "title": "py-workdays",
+        "image_path": "https://dl.dropboxusercontent.com/s/zw2vdtyt11vcl9s/python_and_rust_small.png",
+        "desc": "営業日・営業時間を取得・データから抜き出しができるライブラリ"
     },
     {
-        "slug":"ssii_thesis",
-        "title":"SSII2020発表論文",
-        "image_path":"https://dl.dropboxusercontent.com/s/nr5pxpnlv0il2ty/full_model_structure_small.png",
-        "desc":"OpenPose で取得した時系列骨格データからの深層生成モデルによる個人識別"
+        "slug": "ssii_thesis",
+        "title": "SSII2020発表論文",
+        "image_path": "https://dl.dropboxusercontent.com/s/nr5pxpnlv0il2ty/full_model_structure_small.png",
+        "desc": "OpenPose で取得した時系列骨格データからの深層生成モデルによる個人識別"
+    },
+    {
+        "slug": "rikou_meitan",
+        "title": "莉光迷站",
+        "image_path": "https://dl.dropboxusercontent.com/s/xhsqtirbqcp9q17/rikou_meitan.png",
+        "desc": "おりコウの非公式ファンサイト「莉光迷站」"
     }
 ]
