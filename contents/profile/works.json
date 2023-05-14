@@ -3,13 +3,13 @@
         "slug": "tracking_annotation",
         "title": "tracking annotation",
         "image_path": "https://dl.dropboxusercontent.com/s/zcysm9eaboevnug/tracking_annotation_small.png",
-        "desc": "トラッキング技術を用いて補助する動画用アノテーションツール"
+        "desc": "トラッキング技術(AI)を用いて補助する動画用アノテーションツール"
     },
     {
         "slug": "trading_system",
         "title": "trade system",
         "image_path": "https://dl.dropboxusercontent.com/s/4kdoqm66qcw9zmy/trading_system_small.PNG",
-        "desc": "トレーディング用の深層強化学習環境．株式データの取得とpfrlによる学習が可能"
+        "desc": "トレーディング用の深層強化学習(AI)環境．株式データの取得とpfrlによる学習が可能"
     },
     {
         "slug": "py_workdays",
